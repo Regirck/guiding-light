@@ -25,5 +25,8 @@ HELP.md
 /.nb-gradle/
 /build/
 
+### Test database ###
+.db
+
 ### VS Code ###
 .vscode/
