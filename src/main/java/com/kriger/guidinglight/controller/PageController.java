@@ -1,6 +1,5 @@
 package com.kriger.guidinglight.controller;
 
-import com.kriger.guidinglight.model.User;
 import com.kriger.guidinglight.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
