@@ -16,4 +16,24 @@ public class PageController {
         return "index";
     }
 
+    @GetMapping("/tutorials")
+    public String tutorials() {
+        return "not_supported";
+    }
+
+    @GetMapping("/tests")
+    public String tests() {
+        return "not_supported";
+    }
+
+    @GetMapping("/forum")
+    public String forum() {
+        return "not_supported";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "not_supported";
+    }
+
 }
