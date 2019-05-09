@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -22,12 +24,22 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    private String nickName;
-    private String FirstName;
-    private String LastName;
+    @NotNull
+    private String username;
+    private String firstName;
+    private String lastName;
 
+    private String country;
+
+    private String jobs;
+
+    @NotNull
     private String email;
+    @NotNull
     private String password;
+
+    private LocalDateTime registrationDate;
+    private LocalDateTime lastSignIn;
 
 }
 
