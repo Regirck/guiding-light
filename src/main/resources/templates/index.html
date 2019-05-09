@@ -6,6 +6,8 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    <link rel="shortcut icon" type="image/png" href="../static/img/GuidingLightIcon.png"/>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
@@ -17,44 +19,76 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- My JS -->
+    <script src="../static/js/navbar.js" defer></script>
 </head>
+
 <body>
-    <!--Navbar -->
-    <nav class="navbar navbar-expand-md navbar-light indigo">
 
-        <a class="navbar-brand" href="/">
-            <img src="../static/img/GuidingLightIcon.png" height="35">
-        </a>
+<!--Navbar -->
+<nav class="navbar navbar-expand-md bg-dark">
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-                aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <a class="navbar-brand" href="/">
+        <img src="../static/img/GuidingLightIcon.png" height="35">
+    </a>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav ml-auto nav-flex-icons">
-                <li class="nav-item avatar">
-                    <a class="nav-link p-0" href="#">
-                        <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
-                             alt="avatar image" height="35">
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!--/.Navbar -->
+    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/tutorials">Tutorials</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/tests">Tests</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/forum">Forum</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+            </li>
+        </ul>
+
+        <!-- If login
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item avatar">
+                <a class="nav-link p-0" href="/login">
+                    <img src="https://robohash.org/USERNAME"
+                         class="rounded-circle z-depth-0"height="35">
+                </a>
+            </li>
+        </ul>
+        -->
+
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            <li class="nav-item avatar">
+                <a class="nav-link p-0" href="/login">
+                    <span>Sign in
+                        <img src="../static/img/NotLoggedIcon.png"
+                         class="rounded-circle z-depth-0" height="20">
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--/.Navbar -->
+
 </body>
 </html>
