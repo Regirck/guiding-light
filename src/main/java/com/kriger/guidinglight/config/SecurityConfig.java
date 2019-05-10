@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth
-            .inMemoryAuthentication()
+                .inMemoryAuthentication()
                 .withUser("username")
                 .password(passwordEncoder.encode("1234"))
                 .roles("USER");
@@ -28,18 +28,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
+
                 .antMatchers(HttpMethod.GET). permitAll()
 
-                .antMatchers(HttpMethod.POST).hasRole("USER")
-                .antMatchers(HttpMethod.POST).hasRole("ADMIN")
-
-                .antMatchers(HttpMethod.PUT).hasRole("USER")
-                .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
-
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+
+                .anyRequest().authenticated()
             .and()
                 .formLogin()
-                    .permitAll();
+                    .loginPage("/login")
+                        .permitAll()
+            .and()
+                .logout()
+                    .logoutSuccessUrl("/login?logout")
+                        .permitAll();
     }
 
 }
