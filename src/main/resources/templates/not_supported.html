@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layout/navbar}">
 <head>
     <meta charset="UTF-8">
-    <title>Not Supported</title>
+
+    <title>Not supported</title>
 </head>
 <body>
 
-<h1>Not supported yet</h1>
+<section class="container" layout:fragment="~{content}">
+    <div>Not supported yet</div>
+</section>
 
 </body>
 </html>
