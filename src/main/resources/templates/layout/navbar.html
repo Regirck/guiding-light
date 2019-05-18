@@ -1,96 +1,106 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <meta charset="UTF-8">
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
-    <link rel="shortcut icon" type="image/png" href="../../static/img/GuidingLightIcon.png"/>
+        <link rel="shortcut icon" type="image/png" href="../../static/img/GuidingLightIcon.png"/>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <!-- My JS -->
-    <script src="../../static/js/navbar.js" defer></script>
-</head>
+        <!-- My JS -->
+        <script src="../../static/js/navbar.js" defer></script>
+    </head>
 
-<body>
+    <body>
 
-<!--Navbar -->
-<nav class="navbar navbar-expand-md bg-dark">
+        <!--Navbar -->
+        <nav class="navbar navbar-expand-md bg-dark">
 
-    <a class="navbar-brand" href="/">
-        <img src="../../static/img/GuidingLightIcon.png" height="35">
-    </a>
+            <a class="navbar-brand" href="/">
+                <img src="../../static/img/GuidingLightIcon.png" height="35">
+            </a>
 
-    <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent-555"
-            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+            <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent-555"
+                    aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-        <ul class="navbar-nav mr-auto">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+                <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="/">
-                    <span class="sr-only">(current)</span>
-                </a>
-            </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/tutorials">Tutorials</a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tutorials">Tutorials</a>
+                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/tests">Tests</a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tests">Tests</a>
+                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/forum">Forum</a>
-            </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/forum">Forum</a>
+                    </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
-            </li>
-        </ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
 
-        <!-- If login
+                <!-- If login
+                        <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item avatar">
+                        <a class="nav-link p-0" href="/login">
+                            <img src="https://robohash.org/${USERNAME}"
+                                 class="rounded-circle z-depth-0"height="35">
+                        </a>
+                    </li>
+                </ul>
+                -->
+
                 <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item avatar">
-                <a class="nav-link p-0" href="/login">
-                    <img src="https://robohash.org/${USERNAME}"
-                         class="rounded-circle z-depth-0"height="35">
-                </a>
-            </li>
-        </ul>
-        -->
+                    <li class="nav-item avatar">
 
-        <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item avatar">
-                <a class="nav-link p-0" href="/login">
-                    <span>Sign in
-                        <img src="../../static/img/NotLoggedIcon.png"
-                             class="rounded-circle z-depth-0" height="20">
-                    </span>
-                </a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<!--/.Navbar -->
+                        <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post">
+                            <div sec:authentication="name"></div>
+                            <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">logout</a>
+                        </form>
 
-<section layout:fragment="~{content}"></section>
+                        <div sec:authorize="isAnonymous()">
+                            <a class="nav-link p-0" href="/login">
+                                <span>Sign in
+                                    <img src="../../static/img/NotLoggedIcon.png"
+                                         class="rounded-circle z-depth-0" height="20">
+                                </span>
+                            </a>
+                        </div>
 
-</body>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--/.Navbar -->
+
+        <section layout:fragment="~{content}"></section>
+
+    </body>
 </html>
