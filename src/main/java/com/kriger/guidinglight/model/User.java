@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,8 +27,6 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private String fullName;
-
     private String activation;
 
     private Boolean enabled;
@@ -48,6 +44,7 @@ public class User {
             this.roles = new HashSet<>();
         this.roles.add(new Role(roleName));
     }
+
 }
 
 

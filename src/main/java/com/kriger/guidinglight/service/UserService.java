@@ -34,22 +34,22 @@ public class UserService implements UserDetailsService {
         return new UserDetailsImpl(user);
     }
 
-    public boolean registerUser(User userToRegister) {
-        User userCheck = userRepository.findByEmail(userToRegister.getEmail());
+    public boolean registerUser(User user) {
+        User userCheck = userRepository.findByEmail(user.getEmail());
 
         if (userCheck != null)
             return false;
 
         Role userRole = roleRepository.findByRole(USER_ROLE);
         if (userRole != null) {
-            userToRegister.getRoles().add(userRole);
+            user.getRoles().add(userRole);
         } else {
-            userToRegister.addRoles(USER_ROLE);
+            user.addRoles(USER_ROLE);
         }
 
-        userToRegister.setEnabled(false);
-        userToRegister.setActivation(generateKey());
-        userRepository.save(userToRegister);
+        user.setEnabled(false);
+        user.setActivation(generateKey());
+        userRepository.save(user);
 
         return true;
     }
@@ -70,6 +70,7 @@ public class UserService implements UserDetailsService {
 
         user.setEnabled(true);
         user.setActivation("");
+        user.addRoles(USER_ROLE);
         userRepository.save(user);
         return true;
     }
