@@ -70,6 +70,7 @@ public class PageController {
 
     @GetMapping("/activation/{code}")
     public String activation(@PathVariable("code") String code) {
+        // TODO activation
 //        boolean isActivation = userService.userActivation(code);
 //        if (!isActivation) {
 //            return "auth/login";
