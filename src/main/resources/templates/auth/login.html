@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.w3.org/1999/xhtml"
-      layout:decorator="~{layout/navbar}" >
+      layout:decorate="~{layout/navbar}" >
 <head>
     <meta charset="UTF-8">
 
@@ -23,14 +23,14 @@
         <div th:if="${param.logout}" class="alert alert-success">Success logout</div>
 
         <label for="username" class="sr-only">Username</label>
-
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="true" />
 
         <label for="password" class="sr-only">Password</label>
-
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="true" />
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <div>OR</div>
+        <a class="btn btn-lg btn-danger btn-block" href="/registration" role="button">Registration</a>
     </form>
 
 </section>

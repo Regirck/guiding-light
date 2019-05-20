@@ -5,12 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -24,23 +23,22 @@ public class User {
     @GeneratedValue
     private Long id;
 
-    @NotNull
-    private String username;
-    private String firstName;
-    private String lastName;
-
-    private String country;
-
-    private String jobs;
-
-    @NotNull
     private String email;
-    @NotNull
     private String password;
 
-    private LocalDateTime registrationDate;
-    private LocalDateTime lastSignIn;
+    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="role_id")}
+    )
+    private Set<Role> roles = new HashSet<>();
 
+    public void addRoles(String roleName) {
+        if (this.roles == null || this.roles.isEmpty())
+            this.roles = new HashSet<>();
+        this.roles.add(new Role(roleName));
+    }
 }
 
 

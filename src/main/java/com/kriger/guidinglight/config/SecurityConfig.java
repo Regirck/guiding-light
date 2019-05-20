@@ -7,21 +7,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 @EnableGlobalMethodSecurity(securedEnabled = true)
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private UserDetailsService userDetailsService;
+
+    @Autowired
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        auth
-                .inMemoryAuthentication()
-                .withUser("username")
-                .password(passwordEncoder.encode("1234"))
-                .roles("USER");
+        auth.userDetailsService(userDetailsService);
     }
 
     @Override
@@ -31,7 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET). permitAll()
 
+                .antMatchers(HttpMethod.POST).hasRole("USER")
+
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+
+                .antMatchers("/registration").permitAll()
 
                 .anyRequest().authenticated()
             .and()
