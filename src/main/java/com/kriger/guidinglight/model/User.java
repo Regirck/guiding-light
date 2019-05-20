@@ -1,9 +1,8 @@
 package com.kriger.guidinglight.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -37,6 +36,7 @@ public class User {
             joinColumns = {@JoinColumn(name="user_id")},
             inverseJoinColumns = {@JoinColumn(name="role_id")}
     )
+    @EqualsAndHashCode.Exclude
     private Set<Role> roles = new HashSet<>();
 
     public void addRoles(String roleName) {

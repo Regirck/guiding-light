@@ -1,9 +1,6 @@
 package com.kriger.guidinglight.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -24,6 +21,7 @@ public class Role {
     private String role;
 
     @ManyToMany( mappedBy = "roles")
+    @EqualsAndHashCode.Exclude
     private Set<User> users = new HashSet<>();
 
     public Role(String role){

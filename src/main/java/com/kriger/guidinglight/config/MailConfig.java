@@ -15,6 +15,8 @@ public class MailConfig {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
         javaMailSender.setHost("smtp.gmail.com");
+        javaMailSender.setUsername("guidinglight.webapp@gmail.com");
+        javaMailSender.setPassword("QaWsEdRf");
         javaMailSender.setPort(587);
 
         javaMailSender.setJavaMailProperties(getMailProperties());
