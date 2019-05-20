@@ -64,7 +64,8 @@ public class PageController {
         log.info(user.getEmail());
         userService.registerUser(user);
         log.info(String.valueOf(user.getId()));
-        emailService.sendMessage(user);
+
+//        emailService.sendMessage(user);
         return "auth/login";
     }
 
