@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmailService {
 
-    @Value("${spring.mail.username}")
-    private String MESSAGE_FROM;
+    private String MESSAGE_FROM = "guidinglight.webapp@gmail.com";
 
     @Autowired
     private JavaMailSender javaMailSender;
