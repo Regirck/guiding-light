@@ -1,6 +1,7 @@
 package com.kriger.guidinglight.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Qualifier("userService")
     @Autowired
     private UserDetailsService userDetailsService;
 
@@ -27,12 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**", "/js/**", "/images/**").permitAll()
 
                 .antMatchers(HttpMethod.GET). permitAll()
+                .antMatchers("/registration").permitAll()
 
                 .antMatchers(HttpMethod.POST).hasRole("USER")
 
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
 
-                .antMatchers("/registration").permitAll()
 
                 .anyRequest().authenticated()
             .and()

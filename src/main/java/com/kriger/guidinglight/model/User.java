@@ -23,8 +23,17 @@ public class User {
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(nullable = false)
     private String password;
+
+    private String fullName;
+
+    private String activation;
+
+    private Boolean enabled;
 
     @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     @JoinTable(
