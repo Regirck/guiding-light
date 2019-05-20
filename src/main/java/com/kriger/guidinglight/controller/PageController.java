@@ -1,6 +1,7 @@
 package com.kriger.guidinglight.controller;
 
 import com.kriger.guidinglight.model.User;
+import com.kriger.guidinglight.service.EmailService;
 import com.kriger.guidinglight.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Slf4j
@@ -20,6 +20,9 @@ public class PageController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping("/")
     public String index() {
@@ -60,6 +63,7 @@ public class PageController {
         log.info("Save registration!");
         log.info(user.getEmail());
         userService.registerUser(user);
+        emailService.sendMessage(user.getEmail());
         return "auth/login";
     }
 
