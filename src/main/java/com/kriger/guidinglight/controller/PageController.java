@@ -63,13 +63,17 @@ public class PageController {
         log.info("Save registration!");
         log.info(user.getEmail());
         userService.registerUser(user);
-        emailService.sendMessage(user.getEmail());
+        log.info(String.valueOf(user.getId()));
+        emailService.sendMessage(user);
         return "auth/login";
     }
 
     @GetMapping("/activation/{code}")
     public String activation(@PathVariable("code") String code) {
-        userService.userActivation(code);
+//        boolean isActivation = userService.userActivation(code);
+//        if (!isActivation) {
+//            return "auth/login";
+//        }
         return "auth/login";
     }
 }

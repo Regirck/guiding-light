@@ -1,5 +1,6 @@
 package com.kriger.guidinglight.service;
 
+import com.kriger.guidinglight.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,26 +18,26 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendMessage(String email) {
-        SimpleMailMessage message = null;
+    public void sendMessage(User user) {
+        SimpleMailMessage message;
 
         try {
             message = new SimpleMailMessage();
             message.setFrom(MESSAGE_FROM);
 
-            message.setTo(email);
+            message.setTo(user.getEmail());
 
             message.setSubject("Registration on the guiding light");
 
-            message.setText("Dear " + email + "! \n \n " +
+            message.setText("Dear " + user.getEmail() + "! \n \n " +
                     "Thank you for the registration! \n \n " +
                     "Please activation your profile: \n " +
-                    "\t https://guiding-light.herokuapp.com/activation/activationcode");
+                    "\t https://guiding-light.herokuapp.com/activation/" + user.getActivation());
 
             javaMailSender.send(message);
 
         } catch (Exception e) {
-            log.error("Error e-mail send: " + email + "  " + e);
+            log.error("Error e-mail send: " + user.getEmail() + "  " + e);
         }
 
 
