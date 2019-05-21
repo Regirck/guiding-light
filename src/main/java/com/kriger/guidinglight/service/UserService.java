@@ -73,7 +73,8 @@ public class UserService implements UserDetailsService {
 
         user.setEnabled(true);
         user.setActivation("");
-        user.addRoles(USER_ROLE);
+        Role userRole = roleRepository.findByRole(USER_ROLE);
+        user.getRoles().add(userRole);
         userRepository.save(user);
         return true;
     }
