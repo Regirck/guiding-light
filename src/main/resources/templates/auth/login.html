@@ -20,6 +20,7 @@
         <h2 class="form-signin-heading">Please sign in</h2>
 
         <div id="err" th:if="${param.error}" class="alert alert-danger">Wrong username or password!</div>
+        <div th:if="${param.activation}" class="alert alert-success">Success activation, please sign in</div>
         <div th:if="${param.logout}" class="alert alert-success">Success logout</div>
 
         <label for="email" class="sr-only">Email</label>
@@ -30,7 +31,7 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
         <div>OR</div>
-        <a class="btn btn-lg btn-danger btn-block" href="/registration" role="button">Registration</a>
+        <a class="btn btn-lg btn-danger btn-block" href="/registration" role="button">Sing up</a>
     </form>
 
 </section>

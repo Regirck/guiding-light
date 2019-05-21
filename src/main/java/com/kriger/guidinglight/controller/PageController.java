@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 
@@ -58,8 +59,10 @@ public class PageController {
 
     @PostMapping("/registration")
     public String saveRegistration(@ModelAttribute("user") @Valid User user) {
-        // TODO user is exists
-        userService.registerUser(user);
+        boolean userSaved = userService.registerUser(user);
+        if (!userSaved) {
+            return "redirect:/login?error";
+        }
         emailService.sendMessage(user);
         return "auth/login";
     }
@@ -70,6 +73,6 @@ public class PageController {
         if (!isActivation) {
             return "auth/login";
         }
-        return "auth/login";
+        return "redirect:/login?activation";
     }
 }
