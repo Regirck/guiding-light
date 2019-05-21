@@ -49,12 +49,15 @@ public class UserService implements UserDetailsService {
 
         user.setEnabled(false);
         user.setActivation(generateKey());
+
+        // TODO hashing to password
+
         userRepository.save(user);
 
         return true;
     }
 
-    public String generateKey() {
+    private String generateKey() {
         Random random = new Random();
         char[] word = new char[16];
         for (int j = 0; j < word.length; j++) {

@@ -26,7 +26,6 @@ public class PageController {
 
     @GetMapping("/")
     public String index() {
-        log.info("Open index page!");
         return "index";
     }
 
@@ -53,29 +52,24 @@ public class PageController {
     @GetMapping("/registration")
     public String registration(Model model){
         User user = new User();
-        log.info(user.toString());
         model.addAttribute("user", user);
         return "registration";
     }
 
     @PostMapping("/registration")
     public String saveRegistration(@ModelAttribute("user") @Valid User user) {
-        log.info("Save registration!");
-        log.info(user.getEmail());
+        // TODO user is exists
         userService.registerUser(user);
-        log.info(String.valueOf(user.getId()));
-
         emailService.sendMessage(user);
         return "auth/login";
     }
 
     @GetMapping("/activation/{code}")
     public String activation(@PathVariable("code") String code) {
-        // TODO activation
-//        boolean isActivation = userService.userActivation(code);
-//        if (!isActivation) {
-//            return "auth/login";
-//        }
+        boolean isActivation = userService.userActivation(code);
+        if (!isActivation) {
+            return "auth/login";
+        }
         return "auth/login";
     }
 }
