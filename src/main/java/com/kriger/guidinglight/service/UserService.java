@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
+import static com.kriger.guidinglight.util.RegistrationAndLoginUtil.generateRandomActivationKey;
 
 
 @Service
@@ -48,7 +48,15 @@ public class UserService implements UserDetailsService {
         }
 
         user.setEnabled(false);
-        user.setActivation(generateKey());
+
+        while (true) {
+            String activationKey = generateRandomActivationKey();
+            User activationKeyIsExistsOnDatabase = userRepository.findByActivation(activationKey);
+            if (activationKeyIsExistsOnDatabase == null) {
+                user.setActivation(activationKey);
+                break;
+            }
+        }
 
         // TODO hashing to password
 
@@ -57,14 +65,6 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
-    private String generateKey() {
-        Random random = new Random();
-        char[] word = new char[16];
-        for (int j = 0; j < word.length; j++) {
-            word[j] = (char) ('a' + random.nextInt(26));
-        }
-        return new String(word);
-    }
 
     public boolean userActivation(String code) {
         User user = userRepository.findByActivation(code);
@@ -73,8 +73,11 @@ public class UserService implements UserDetailsService {
 
         user.setEnabled(true);
         user.setActivation("");
+
+        // TODO checking under two line is necessary
         Role userRole = roleRepository.findByRole(USER_ROLE);
         user.getRoles().add(userRole);
+
         userRepository.save(user);
         return true;
     }
