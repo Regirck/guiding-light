@@ -4,6 +4,7 @@ import com.kriger.guidinglight.model.Role;
 import com.kriger.guidinglight.model.User;
 import com.kriger.guidinglight.repository.RoleRepository;
 import com.kriger.guidinglight.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,6 +15,7 @@ import static com.kriger.guidinglight.util.RegistrationAndLoginUtil.generateRand
 
 
 @Service
+@Slf4j
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -37,8 +39,9 @@ public class UserService implements UserDetailsService {
     public boolean registerUser(User user) {
         User userCheck = userRepository.findByEmail(user.getEmail());
 
-        if (userCheck != null)
+        if (userCheck != null) {
             return false;
+        }
 
         Role userRole = roleRepository.findByRole(USER_ROLE);
         if (userRole != null) {
@@ -49,20 +52,21 @@ public class UserService implements UserDetailsService {
 
         user.setEnabled(false);
 
+        String activationKey = createRandomUniqueActivationKeyForTheUser();
+        user.setActivation(activationKey);
+
+        userRepository.save(user);
+        return true;
+    }
+
+    private String createRandomUniqueActivationKeyForTheUser() {
         while (true) {
             String activationKey = generateRandomActivationKey();
             User activationKeyIsExistsOnDatabase = userRepository.findByActivation(activationKey);
             if (activationKeyIsExistsOnDatabase == null) {
-                user.setActivation(activationKey);
-                break;
+                return activationKey;
             }
         }
-
-        // TODO hashing to password
-
-        userRepository.save(user);
-
-        return true;
     }
 
 
@@ -74,7 +78,6 @@ public class UserService implements UserDetailsService {
         user.setEnabled(true);
         user.setActivation("");
 
-        // TODO checking under two line is necessary
         Role userRole = roleRepository.findByRole(USER_ROLE);
         user.getRoles().add(userRole);
 

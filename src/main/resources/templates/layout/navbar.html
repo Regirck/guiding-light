@@ -66,33 +66,35 @@
                     </li>
                 </ul>
 
-                <!-- If login
-                        <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <li class="nav-item avatar">
-                        <a class="nav-link p-0" href="/login">
-                            <img src="https://robohash.org/${USERNAME}"
-                                 class="rounded-circle z-depth-0"height="35">
-                        </a>
-                    </li>
-                </ul>
-                -->
 
                 <ul class="navbar-nav ml-auto nav-flex-icons">
-                    <li class="nav-item avatar">
 
+                    <li class="nav-item dropdown">
                         <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post">
-                            <div sec:authentication="name"></div>
-                            <a href="javascript:{}" onclick="document.getElementById('frmlogout').submit(); return false;">logout</a>
-                        </form>
 
-                        <div sec:authorize="isAnonymous()">
-                            <a class="nav-link p-0" href="/login">
-                                <span>Sign in
-                                    <img src="../../static/img/NotLoggedIcon.png"
-                                         class="rounded-circle z-depth-0" height="20">
-                                </span>
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span sec:authentication="name"></span>
                             </a>
-                        </div>
+
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Profile
+                                    <img src="https://robohash.org/${#authentication.name}"
+                                         class="rounded-circle z-depth-0" height="35">
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="javascript:{}"
+                                   onclick="document.getElementById('frmlogout').submit(); return false;">logout
+                                </a>
+                            </div>
+                        </form>
+                    </li>
+
+                    <div sec:authorize="isAnonymous()">
+                        <a class="nav-link p-0" href="/login">
+                            <span>Sign in</span>
+                        </a>
+                    </div>
 
                     </li>
                 </ul>
