@@ -24,7 +24,6 @@ public class ProfileController {
         }
         UserPersonalData loggedUserPersonalData = profileService.getLoggedUserPersonalData(loggedUser);
         if (loggedUserPersonalData == null) {
-            System.out.println("This is null");
             return "auth/login";
         }
         log.info(loggedUserPersonalData.getFirstName());

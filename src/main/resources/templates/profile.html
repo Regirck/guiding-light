@@ -11,7 +11,13 @@
 
 <section class="container" layout:fragment="~{content}">
 
-    <div>Profile</div>
+    <form name="profile" th:action="@{/#}" th:object="${personal}" method="post">
+
+        <h2>Profile</h2>
+
+        <input type="text" name="first-name" th:field="*{firstName}" placeholder="First name"/>
+
+    </form>
 
 
 </section>
