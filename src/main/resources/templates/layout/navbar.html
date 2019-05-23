@@ -21,6 +21,9 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+        <!-- My CSS -->
+        <link rel="stylesheet" type="text/css" href="../static/css/navbar.css">
+
         <!-- My JS -->
         <script src="../../static/js/navbar.js" defer></script>
     </head>
@@ -41,7 +44,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav mr-auto" >
 
                     <li class="nav-item active">
                         <a class="nav-link" href="/">
@@ -69,19 +72,18 @@
 
                 <ul class="navbar-nav ml-auto nav-flex-icons">
 
-                    <li class="nav-item dropdown">
+                <li class="nav-item dropdown">
                         <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span sec:authentication="name"></span>
+                                <img src="https://robohash.org/${#authentication.name}"
+                                     class="rounded-circle z-depth-0" height="35">
                             </a>
 
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Profile
-                                    <img src="https://robohash.org/${#authentication.name}"
-                                         class="rounded-circle z-depth-0" height="35">
-                                </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-item" sec:authentication="name"></div>
+                                <a class="dropdown-item" href="#">Profile</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:{}"
                                    onclick="document.getElementById('frmlogout').submit(); return false;">logout
