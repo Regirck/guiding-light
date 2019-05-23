@@ -30,7 +30,11 @@ public class User {
 
     private Boolean enabled;
 
-    @ManyToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JoinColumn(name="id")
+    private UserPersonalData userPersonalData;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",
             joinColumns = {@JoinColumn(name="user_id")},

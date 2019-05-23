@@ -2,7 +2,9 @@ package com.kriger.guidinglight.service;
 
 import com.kriger.guidinglight.model.Role;
 import com.kriger.guidinglight.model.User;
+import com.kriger.guidinglight.model.UserPersonalData;
 import com.kriger.guidinglight.repository.RoleRepository;
+import com.kriger.guidinglight.repository.UserPersonalDataRepository;
 import com.kriger.guidinglight.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
