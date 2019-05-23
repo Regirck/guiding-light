@@ -44,7 +44,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-                <ul class="navbar-nav mr-auto" >
+                <ul class="navbar-nav mr-auto">
 
                     <li class="nav-item active">
                         <a class="nav-link" href="/">
@@ -72,7 +72,7 @@
 
                 <ul class="navbar-nav ml-auto nav-flex-icons">
 
-                <li class="nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <form sec:authorize="isAuthenticated()" id="frmlogout" th:action="@{/logout}" method="post">
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -98,7 +98,6 @@
                         </a>
                     </div>
 
-                    </li>
                 </ul>
             </div>
         </nav>
