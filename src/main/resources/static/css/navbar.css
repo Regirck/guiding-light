@@ -4,6 +4,29 @@
     padding-bottom: 0.15rem;
 }
 
+.logout {
+    color: #aa2525 !important;
+}
+
+.dropdown-menu-right {
+    text-align: center;
+    background-color: #343a40 !important;
+}
+
+.dropdown-menu {
+    background-color: black;
+}
+
+.dropdown-menu > li > a {
+    margin: 5px;
+    color: #007bff;
+}
+
+.dropdown-menu > li > a:hover {
+    background-color: #343a40;
+    background-image: none;
+}
+
 .dropdown-toggle::after {
     display:none;
 }
