@@ -15,24 +15,44 @@
 
 <section class="container" layout:fragment="~{content}">
 
-    <form name="login" th:action="@{/login}" method="post" class="form-signin">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+        <!-- Tabs Titles -->
+            <div th:if="${param.error}" class="alert alert-danger">Wrong username or password!</div>
+            <div th:if="${param.activation}" class="alert alert-success">Success activation, please sign in</div>
+            <div th:if="${param.logout}" class="alert alert-success">Success logout</div>
 
-        <h2 class="form-signin-heading">Please sign in</h2>
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="../../static/img/GuidingLightIcon.png" id="icon" alt="User Icon"/>
+            </div>
 
-        <div id="err" th:if="${param.error}" class="alert alert-danger">Wrong username or password!</div>
-        <div th:if="${param.activation}" class="alert alert-success">Success activation, please sign in</div>
-        <div th:if="${param.logout}" class="alert alert-success">Success logout</div>
+            <h2> SIGN IN </h2>
 
-        <label for="email" class="sr-only">Email</label>
-        <input type="email" id="email" name="username" class="form-control" placeholder="E-mail" required="true" />
+            <!-- Login Form -->
+            <form name="login" th:action="@{/login}" method="post">
+                <input type="text" class="fadeIn second" name="username" placeholder="E-mail">
+                <input type="password" class="fadeIn third" name="password" placeholder="Password">
+                <input type="submit" class="fadeIn fourth" value="Sign In">
+            </form>
 
-        <label for="password" class="sr-only">Password</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="true" />
+            <input type="button" class="fadeIn fourth" value="Sign up" onclick="relocate_registration()">
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <div>OR</div>
-        <a class="btn btn-lg btn-danger btn-block" href="/registration" role="button">Sign up</a>
-    </form>
+            <script>
+                function relocate_registration()
+                {
+                    location.href = "/registration";
+                }
+            </script>
+
+<!--            <a class="btn btn-lg btn-danger btn-block" href="/registration" role="button">Sign up</a>-->
+
+            <!-- Remind Password -->
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Forgot Password?</a>
+            </div>
+
+        </div>
 
 </section>
 
