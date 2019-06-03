@@ -5,22 +5,43 @@
 <head>
     <meta charset="UTF-8">
 
-    <title>Profile</title>
+    <title>Guiding Light - Profile</title>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/profile.css">
 </head>
 <body>
 
 <section class="container" layout:fragment="~{content}">
 
-    <form name="profile" th:action="@{/profile}" th:object="${profile}" method="post">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
 
-        <h2>Profile</h2>
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img th:src="@{http://www.robohash.org/{user}(user = ${#authentication.name} )}" id="icon"
+                     alt="User Icon"/>
+            </div>
 
-        <input type="text" name="first-name" th:field="*{firstName}" placeholder="First name"/>
-        <input type="text" name="last-name" th:field="*{lastName}" placeholder="Last name"/>
+            <h2>Profile</h2>
 
-        <input type="submit" value="Save">
+            <form name="profile" th:action="@{/profile}" th:object="${profile}" method="post">
 
-    </form>
+                <div style="white-space:nowrap">
+                    <label for="first-name">First name:</label>
+                    <input id="first-name" type="text" name="first-name" class="fadeIn second" th:field="*{firstName}"
+                           placeholder="First name"/>
+                </div>
+                <div style="white-space:nowrap">
+                    <label for="last-name">Last name:</label>
+                    <input id="last-name" type="text" name="last-name" class="fadeIn second" th:field="*{lastName}"
+                           placeholder="Last name"/>
+                </div>
+                <input type="submit" value="Save">
+
+            </form>
+        </div>
+    </div>
 
 
 </section>
