@@ -27,7 +27,7 @@
 
             <form name="registration" th:action="@{/registration}" th:object="${user}" method="post">
 
-                <input type="text" name="email" class="fadeIn second"
+                <input type="email" name="email" class="fadeIn second"
                        th:field="*{email}" placeholder="E-mail"/>
                 <input type="password" name="password" class="fadeIn third"
                        th:field="*{password}" placeholder="Password">

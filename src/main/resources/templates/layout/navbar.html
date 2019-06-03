@@ -77,7 +77,7 @@
 
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="https://robohash.org/${#authentication.name}"
+                                <img th:src="@{http://www.robohash.org/{user}(user = ${#authentication.name} )}"
                                      class="rounded-circle z-depth-0" height="25">
                             </a>
 
