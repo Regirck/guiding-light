@@ -41,4 +41,8 @@ public class ProfileService {
         return userPersonalData;
     }
 
+    public void saveUser(UserPersonalData profile) {
+        userPersonalDataRepository.save(profile);
+    }
+
 }
