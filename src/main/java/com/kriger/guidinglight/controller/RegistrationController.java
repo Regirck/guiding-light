@@ -26,7 +26,7 @@ public class RegistrationController {
     public String registration(Model model){
         User user = new User();
         model.addAttribute("user", user);
-        return "registration";
+        return "auth/registration";
     }
 
     @PostMapping("/registration")
@@ -47,5 +47,7 @@ public class RegistrationController {
         }
         return "redirect:/login?activation";
     }
+
+    //TODO forgot password route and business logic
 
 }

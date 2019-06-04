@@ -42,38 +42,10 @@ h2 {
     text-align: center;
 }
 
-#formFooter {
-    padding: 25px;
-    text-align: center;
-    -webkit-border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
-}
-
-.forgotPassword {
-    color: #f6f6f6;
-    display:inline-block;
-    text-decoration: none;
-    font-weight: 400;
-}
-
-
-
-/* TABS */
-
-h2.inactive {
-    color: #cccccc;
-}
-
-h2.active {
-    color: #0d0d0d;
-    border-bottom: 2px solid #5fbae9;
-}
-
-
 
 /* FORM TYPOGRAPHY*/
 
-input[type=button], input[type=submit], input[type=reset]  {
+input[type=submit] {
     border: none;
     color: white;
     padding: 15px 60px;
@@ -93,26 +65,17 @@ input[type=button], input[type=submit], input[type=reset]  {
 }
 
 input[type=submit] {
-    background-color: #56baed;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-}
-
-input[type=button] {
     background-color: #aa2525;
     -webkit-box-shadow: 0 10px 30px 0 rgba(160,0,0,0.4);
     box-shadow: 0 10px 30px 0 rgba(160,0,0,0.4);
 }
 
-input[type=submit]:hover, input[type=reset]:hover  {
-    background-color: #39ace7;
-}
-
-input[type=button]:hover {
+input[type=submit]:hover {
     background-color: #ba2525;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+
+input[type=submit]:active {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
@@ -120,7 +83,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
     transform: scale(0.95);
 }
 
-input[type=text],[type=password],[type=email] {
+input[type=password],[type=email] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -141,12 +104,12 @@ input[type=text],[type=password],[type=email] {
     border-radius: 5px 5px 5px 5px;
 }
 
-input[type=text],[type=password],[type=email]:focus {
+input[type=password],[type=email]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text],[type=password],[type=email]::placeholder {
+input[type=password],[type=email]::placeholder {
     color: #5c5c5c;
 }
 
