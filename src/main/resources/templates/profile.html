@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/navbar}" xmlns:th="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{layout/navbar}" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
 
@@ -23,7 +24,11 @@
                      alt="User Icon"/>
             </div>
 
-            <h2>Profile</h2>
+            <div>
+                <h2>Profile</h2>
+            </div>
+
+            <h3 sec:authentication="name">Profile</h3>
 
             <form name="profile" th:action="@{/profile}" th:object="${profile}" method="post">
 
