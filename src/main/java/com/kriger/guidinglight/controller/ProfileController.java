@@ -21,23 +21,15 @@ public class ProfileController {
     private ProfileService profileService;
 
     @ModelAttribute
-    public boolean addUserPersonalData(Model model) {
+    public void addUserPersonalData(Model model) {
         User loggedUser = profileService.getLoggedUser();
-        if (loggedUser == null) {
-            return false;
-        }
         UserPersonalData profile = profileService.getLoggedUserPersonalData(loggedUser);
-        if (profile == null) {
-            return false;
-        }
         model.addAttribute("profile", profile);
-        return true;
     }
 
     @GetMapping("/profile")
     public String profile(Model model) {
-        boolean isExists = addUserPersonalData(model);
-        if (!isExists) {
+        if (model == null) {
             return "auth/login";
         }
         return "profile";

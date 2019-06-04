@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 
@@ -19,8 +20,13 @@ public class UserPersonalData {
     @GeneratedValue
     private Long id;
 
+    private String nickName;
+
     private String firstName;
     private String lastName;
+
+    private String country;
+    private String city;
 
     @OneToOne
     private User user;

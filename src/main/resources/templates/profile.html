@@ -27,6 +27,13 @@
 
             <form name="profile" th:action="@{/profile}" th:object="${profile}" method="post">
 
+                <h2>Name</h2>
+
+                <div style="white-space:nowrap">
+                    <label for="nick-name">Nick name:</label>
+                    <input id="nick-name" type="text" name="nick-name" class="fadeIn second" th:field="*{nickName}"
+                           placeholder="Nick name"/>
+                </div>
                 <div style="white-space:nowrap">
                     <label for="first-name">First name:</label>
                     <input id="first-name" type="text" name="first-name" class="fadeIn second" th:field="*{firstName}"
@@ -37,6 +44,20 @@
                     <input id="last-name" type="text" name="last-name" class="fadeIn second" th:field="*{lastName}"
                            placeholder="Last name"/>
                 </div>
+
+                <h2>Address</h2>
+
+                <div style="white-space:nowrap">
+                    <label for="country">&nbsp;Country:</label>
+                    <input id="country" type="text" name="country" class="fadeIn fourth" th:field="*{country}"
+                           placeholder="Country"/>
+                </div>
+                <div style="white-space:nowrap">
+                    <label for="city">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;City:</label>
+                    <input id="city" type="text" name="city" class="fadeIn fourth" th:field="*{city}"
+                           placeholder="City"/>
+                </div>
+
                 <input type="submit" value="Save">
 
             </form>
