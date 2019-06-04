@@ -20,24 +20,32 @@ public class ProfileController {
     @Autowired
     private ProfileService profileService;
 
-    @GetMapping("/profile")
-    public String profile(Model model) {
+    @ModelAttribute
+    public boolean addUserPersonalData(Model model) {
         User loggedUser = profileService.getLoggedUser();
         if (loggedUser == null) {
-            return "auth/login";
+            return false;
         }
         UserPersonalData profile = profileService.getLoggedUserPersonalData(loggedUser);
         if (profile == null) {
-            return "auth/login";
+            return false;
         }
         model.addAttribute("profile", profile);
+        return true;
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        boolean isExists = addUserPersonalData(model);
+        if (!isExists) {
+            return "auth/login";
+        }
         return "profile";
     }
 
     @PostMapping("/profile")
     public String saveProfile(@ModelAttribute("profile") @Valid UserPersonalData profile) {
-        log.info(profile.getFirstName());
-        log.info(profile.getLastName());
+        profileService.saveUserPersonalData(profile);
         return "redirect:/";
     }
 

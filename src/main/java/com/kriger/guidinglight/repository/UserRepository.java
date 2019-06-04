@@ -1,6 +1,7 @@
 package com.kriger.guidinglight.repository;
 
 import com.kriger.guidinglight.model.User;
+import com.kriger.guidinglight.model.UserPersonalData;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
