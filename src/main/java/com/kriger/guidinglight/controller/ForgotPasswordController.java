@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-
 
 @Controller
 @Slf4j
@@ -50,7 +48,6 @@ public class ForgotPasswordController {
             return "redirect:/login?passwordrecoveryerror";
         }
         model.addAttribute(user);
-        log.info(user.getActivation());
         return "auth/password-recovery";
     }
 
@@ -59,6 +56,15 @@ public class ForgotPasswordController {
         log.info(String.valueOf(user.getId()));
         log.info(user.getActivation());
         log.info(user.getPassword());
+
+        User savedUser = userService.findByUserForTheId(user.getId());
+        if (savedUser == null) {
+            return "redirect:/login?passwordrecoveryerror";
+        }
+        boolean passwordChangeIsSuccess = userService.changePassword(user, savedUser);
+        if (!passwordChangeIsSuccess) {
+            return "redirect:/login?passwordrecoveryerror";
+        }
         return "auth/login";
     }
 }
