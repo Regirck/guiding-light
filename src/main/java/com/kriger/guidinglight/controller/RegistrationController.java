@@ -3,17 +3,16 @@ package com.kriger.guidinglight.controller;
 import com.kriger.guidinglight.model.User;
 import com.kriger.guidinglight.service.EmailService;
 import com.kriger.guidinglight.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Controller
+@Slf4j
 public class RegistrationController {
 
     @Autowired
@@ -35,7 +34,7 @@ public class RegistrationController {
         if (!userSaved) {
             return "redirect:/login?error";
         }
-        emailService.sendMessage(user);
+        emailService.sendRegistrationMessage(user);
         return "auth/login";
     }
 
@@ -49,5 +48,20 @@ public class RegistrationController {
     }
 
     //TODO forgot password route and business logic
+
+    @GetMapping("/forgot_password")
+    public String forgotPassword() {
+        return "auth/forgot-password";
+    }
+
+    @PostMapping("/forgot_password")
+    public String sendForgotPasswordEmail(@RequestParam String email){
+        User user = userService.forgotPassword(email);
+        if (user == null) {
+            return "redirect:/login?forgotpassworderror";
+        }
+        log.info(user.getEmail());
+        return "redirect:/login?forgotpassword";
+    }
 
 }
