@@ -18,7 +18,7 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
-    public void sendMessage(User user) {
+    public void sendRegistrationMessage(User user) {
         SimpleMailMessage message;
 
         try {

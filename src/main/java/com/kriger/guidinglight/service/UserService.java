@@ -61,6 +61,18 @@ public class UserService implements UserDetailsService {
         return true;
     }
 
+    public User forgotPassword(String email) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
+            return null;
+        }
+        String activationKey = createRandomUniqueActivationKeyForTheUser();
+        user.setActivation(activationKey);
+        userRepository.save(user);
+        return user;
+
+    }
+
     private String createRandomUniqueActivationKeyForTheUser() {
         while (true) {
             String activationKey = generateRandomActivationKey();
