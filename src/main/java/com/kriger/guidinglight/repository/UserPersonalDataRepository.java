@@ -11,7 +11,4 @@ public interface UserPersonalDataRepository extends JpaRepository<UserPersonalDa
     @Query(value = "SELECT u FROM UserPersonalData u WHERE u.user = :user")
     UserPersonalData findPersonalDataByUser(@Param("user") User user);
 
-//    @Query("SELECT t FROM Trip t WHERE t.user = :user")
-//    ArrayList<Trip> findAllByUserId(@Param("user") CckkUser user);
-
 }

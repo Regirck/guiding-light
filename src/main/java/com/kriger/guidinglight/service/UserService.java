@@ -38,6 +38,10 @@ public class UserService implements UserDetailsService {
         return new UserDetailsImpl(user);
     }
 
+    public User findByUserForTheEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
     public boolean registerUser(User user) {
         User userCheck = userRepository.findByEmail(user.getEmail());
 
