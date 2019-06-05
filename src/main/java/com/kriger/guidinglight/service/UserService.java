@@ -38,6 +38,24 @@ public class UserService implements UserDetailsService {
         return new UserDetailsImpl(user);
     }
 
+    public User findByUserForTheId(long id) {
+        return userRepository.findById(id);
+    }
+
+    public User findByUserForTheEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public boolean changePassword(User user, User savedUser) {
+        if (user.getActivation().equals(savedUser.getActivation())) {
+            savedUser.setPassword(user.getPassword());
+            savedUser.setActivation("");
+            userRepository.save(savedUser);
+            return true;
+        }
+        return false;
+    }
+
     public boolean registerUser(User user) {
         User userCheck = userRepository.findByEmail(user.getEmail());
 

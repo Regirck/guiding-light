@@ -39,8 +39,28 @@ public class EmailService {
         } catch (Exception e) {
             log.error("Error e-mail send: " + user.getEmail() + "  " + e);
         }
+    }
 
+    public void sendForgotPasswordMessage(User user) {
+        SimpleMailMessage message;
 
+        try {
+            message = new SimpleMailMessage();
+            message.setFrom(MESSAGE_FROM);
+
+            message.setTo(user.getEmail());
+
+            message.setSubject("Password recovery on the guiding light");
+
+            message.setText("Dear " + user.getEmail() + "! \n \n " +
+                    "If you have requested password recovery click on the link below. " +
+                            "If you didn't ask for it, please ignore this email. \n " +
+                    "\t https://guiding-light.herokuapp.com/password_recovery/" + user.getEmail() + "&" + user.getActivation());
+
+            javaMailSender.send(message);
+        } catch (Exception e) {
+            log.error("Error e-mail send: " + user.getEmail() + "  " + e);
+        }
     }
 
 }

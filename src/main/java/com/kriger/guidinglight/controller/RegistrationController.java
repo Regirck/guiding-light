@@ -21,8 +21,9 @@ public class RegistrationController {
     @Autowired
     private EmailService emailService;
 
+
     @GetMapping("/registration")
-    public String registration(Model model){
+    public String registration(Model model) {
         User user = new User();
         model.addAttribute("user", user);
         return "auth/registration";
@@ -45,23 +46,6 @@ public class RegistrationController {
             return "auth/login";
         }
         return "redirect:/login?activation";
-    }
-
-    //TODO forgot password route and business logic
-
-    @GetMapping("/forgot_password")
-    public String forgotPassword() {
-        return "auth/forgot-password";
-    }
-
-    @PostMapping("/forgot_password")
-    public String sendForgotPasswordEmail(@RequestParam String email){
-        User user = userService.forgotPassword(email);
-        if (user == null) {
-            return "redirect:/login?forgotpassworderror";
-        }
-        log.info(user.getEmail());
-        return "redirect:/login?forgotpassword";
     }
 
 }
