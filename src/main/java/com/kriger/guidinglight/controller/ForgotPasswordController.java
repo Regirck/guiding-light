@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class ForgotPasswordController {
 
+    // TODO create ForgotPasswordService and refactor UserService
     @Autowired
     private UserService userService;
 
@@ -53,11 +54,7 @@ public class ForgotPasswordController {
 
     @PostMapping("/password_recovery")
     public String changePasswordFromTheRecovery(@ModelAttribute("user") User user){
-        log.info(String.valueOf(user.getId()));
-        log.info(user.getActivation());
-        log.info(user.getPassword());
-
-        User savedUser = userService.findByUserForTheId(user.getId());
+           User savedUser = userService.findByUserForTheId(user.getId());
         if (savedUser == null) {
             return "redirect:/login?passwordrecoveryerror";
         }

@@ -10,6 +10,9 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="../../static/css/auth/registration.css">
+
+    <!-- My JS -->
+    <script src="../../static/js/auth/registration.js" defer></script>
 </head>
 <body>
 
@@ -25,13 +28,18 @@
 
             <h2> SIGN UP </h2>
 
-            <form name="registration" th:action="@{/registration}" th:object="${user}" method="post">
+            <form name="registration" th:action="@{/registration}" th:object="${user}"
+                  onsubmit="return validatePassword()" method="post">
 
                 <input type="email" name="email" class="fadeIn second"
                        th:field="*{email}" placeholder="E-mail"/>
 
-                <input type="password" name="password" class="fadeIn second"
+                <input type="password" name="password" id="password" class="fadeIn second"
                        th:field="*{password}" placeholder="Password">
+
+                <input type="password" name="confirm-password" id="confirm-password" class="fadeIn second"
+                       placeholder="Password">
+
                 <input type="submit" class="fadeIn fourth" value="Sign Up">
 
             </form>
