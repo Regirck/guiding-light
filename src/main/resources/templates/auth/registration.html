@@ -10,6 +10,9 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="../../static/css/auth/registration.css">
+
+    <!-- My JS -->
+    <script src="../../static/js/auth/registration.js" defer></script>
 </head>
 <body>
 
@@ -25,18 +28,53 @@
 
             <h2> SIGN UP </h2>
 
-            <form name="registration" th:action="@{/registration}" th:object="${user}" method="post">
+            <form name="registration" th:action="@{/registration}" th:object="${user}"
+                  onsubmit="return validatePassword();" method="post">
 
                 <input type="email" name="email" class="fadeIn second"
                        th:field="*{email}" placeholder="E-mail"/>
 
-                <input type="password" name="password" class="fadeIn second"
+                <input type="password" name="password" id="password" class="fadeIn second"
                        th:field="*{password}" placeholder="Password">
+
+                <input type="password" name="confirm-password" id="confirm-password" class="fadeIn second"
+                       placeholder="Password">
+
                 <input type="submit" class="fadeIn fourth" value="Sign Up">
 
             </form>
         </div>
     </div>
+
+    <!-- TODO password check modal -->
+    <!-- The Password Not Valid Modal -->
+    <div class="modal" id="password-not-valid">
+        <div class="modal-dialog">
+            <!-- Modal Content -->
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TODO password not match modal -->
+
 </section>
 
 </body>
