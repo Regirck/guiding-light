@@ -4,21 +4,42 @@ function validatePassword() {
     let passwordI = document.getElementById("password").value;
     let passwordII = document.getElementById("confirm-password").value;
 
-    let submission = true;
+    let passwordIsStrong = containmentCheck(passwordI);
 
-    let lowerCaseLetters = /[a-z]/g;
-    let upperCaseLetters = /[A-Z]/g;
-    let numbers = /[0-9]/g;
-    let minimumCharacter = 8;
-
-    if (! passwordI.match(lowerCaseLetters)) {
-        alert("Password not include lower case!")
+    if (passwordIsStrong === false) {
+        $("#password-not-valid").modal("show");
+        return false;
     }
 
     if (passwordI !== passwordII) {
-        submission = false;
-        alert("Password not match!")
+        alert("Password not match!");
+        return  false;
     }
 
-    return submission;
+    return true;
+}
+
+function containmentCheck(password) {
+
+    let lowerCaseLetters = /[a-z]/g;
+    if (!password.match(lowerCaseLetters)) {
+        return false;
+    }
+
+    let upperCaseLetters = /[A-Z]/g;
+    if (!password.match(upperCaseLetters)) {
+        return false;
+    }
+
+    let numbers = /[0-9]/g;
+    if (!password.match(numbers)) {
+        return false;
+    }
+
+    let minimumCharacter = 8;
+    if (!password.length >= minimumCharacter) {
+        return false;
+    }
+
+    return true;
 }
