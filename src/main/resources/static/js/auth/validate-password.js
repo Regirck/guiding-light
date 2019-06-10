@@ -21,25 +21,34 @@ function validatePassword() {
 
 function containmentCheck(password) {
 
+    let checkIsSuccess = false;
+
     let lowerCaseLetters = /[a-z]/g;
-    if (!password.match(lowerCaseLetters)) {
-        return false;
+    let letter = document.getElementById("letter");
+
+    if (password.match(lowerCaseLetters)) {
+        letter.classList.remove("invalid");
+        letter.classList.add("valid");
+    } else {
+        letter.classList.remove("valid");
+        letter.classList.add("invalid");
+        checkIsSuccess = false;
     }
 
     let upperCaseLetters = /[A-Z]/g;
     if (!password.match(upperCaseLetters)) {
-        return false;
+        checkIsSuccess = false;
     }
 
     let numbers = /[0-9]/g;
     if (!password.match(numbers)) {
-        return false;
+        checkIsSuccess = false;
     }
 
     let minimumCharacter = 8;
     if (!password.length >= minimumCharacter) {
-        return false;
+        checkIsSuccess = false;
     }
 
-    return true;
+    return checkIsSuccess;
 }

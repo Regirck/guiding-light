@@ -10,9 +10,10 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="../../static/css/auth/registration.css">
+    <link rel="stylesheet" type="text/css" href="../../static/css/auth/password-check-modal.css">
 
     <!-- My JS -->
-    <script src="../../static/js/auth/registration.js" defer></script>
+    <script src="../../static/js/auth/validate-password.js" defer></script>
 </head>
 <body>
 
@@ -48,25 +49,32 @@
 
     <!-- TODO password check modal -->
     <!-- The Password Not Valid Modal -->
-    <div class="modal" id="password-not-valid">
-        <div class="modal-dialog">
+    <div class="modal fade" id="password-not-valid">
+        <div class="modal-dialog modal-dialog-centered">
             <!-- Modal Content -->
             <div class="modal-content">
 
                 <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
+                <div class="modal-header  modal-header-danger">
+                    <h5 class="modal-title">Your password is not valid!</h5>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    Modal body..
-                </div>
+                    <div id="message">
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <h4>Password must contain the following:</h4>
+
+                        <p id="letter" class="invalid">
+                            - A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">
+                            - A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">
+                            - A <b>number</b></p>
+                        <p id="length" class="invalid">
+                            - Minimum <b>8 characters</b></p>
+                    </div>
                 </div>
 
             </div>
