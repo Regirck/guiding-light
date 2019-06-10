@@ -15,6 +15,22 @@ h2 {
     color: #cccccc;
 }
 
+.password-not-match {
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 10px 8px 10px 8px;
+    color: RED;
+}
+
+.password-not-match-display-none {
+    display: none;
+}
+
+.password-not-match-display-block {
+    display: block;
+}
 
 
 /* STRUCTURE */
