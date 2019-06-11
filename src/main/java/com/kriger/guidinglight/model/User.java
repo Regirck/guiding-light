@@ -1,5 +1,6 @@
 package com.kriger.guidinglight.model;
 
+import com.kriger.guidinglight.model.forum.Question;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -42,6 +43,10 @@ public class User {
     )
     @EqualsAndHashCode.Exclude
     private Set<Role> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    private Set<Question> questions = new HashSet<>();
 
     public void addRoles(String roleName) {
         if (this.roles == null || this.roles.isEmpty()) {

@@ -1,4 +1,4 @@
-package com.kriger.guidinglight.controller;
+package com.kriger.guidinglight.controller.user;
 
 import com.kriger.guidinglight.model.User;
 import com.kriger.guidinglight.model.UserPersonalData;
@@ -32,7 +32,7 @@ public class ProfileController {
         if (model == null) {
             return "auth/login";
         }
-        return "profile";
+        return "user/profile";
     }
 
     @PostMapping("/profile")
