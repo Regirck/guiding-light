@@ -32,7 +32,7 @@ public class ProfileController {
         if (model == null) {
             return "auth/login";
         }
-        return "profile";
+        return "user/profile";
     }
 
     @PostMapping("/profile")

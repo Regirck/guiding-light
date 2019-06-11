@@ -23,10 +23,6 @@ public class PageController {
         return "not_supported";
     }
 
-    @GetMapping("/forum")
-    public String forum() {
-        return "not_supported";
-    }
 
     @GetMapping("/about")
     public String about() {
