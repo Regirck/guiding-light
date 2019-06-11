@@ -11,7 +11,6 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Entity
 @Table(name = "questions")
 public class Question {
@@ -24,6 +23,7 @@ public class Question {
     private String title;
 
     @Column(nullable = false)
+    @Lob
     private String questions;
 
     private LocalDateTime submissionTime;
@@ -37,6 +37,6 @@ public class Question {
 
     @OneToMany(mappedBy = "question" ,cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
-    private Set<Comment> Comments = new HashSet<>();
+    private Set<Comment> comments = new HashSet<>();
 
 }

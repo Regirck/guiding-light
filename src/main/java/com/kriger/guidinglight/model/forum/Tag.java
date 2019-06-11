@@ -19,6 +19,7 @@ public class Tag {
     @GeneratedValue
     private Long id;
 
+    @Column(nullable = false)
     private String tagName;
 
     @ManyToOne

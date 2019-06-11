@@ -1,4 +1,4 @@
-package com.kriger.guidinglight.controller;
+package com.kriger.guidinglight.controller.auth;
 
 import com.kriger.guidinglight.model.User;
 import com.kriger.guidinglight.service.EmailService;
