@@ -33,7 +33,7 @@ public class RegistrationController {
     public String saveRegistration(@ModelAttribute("user") @Valid User user) {
         boolean userSaved = userService.registerUser(user);
         if (!userSaved) {
-            return "redirect:/login?error";
+            return "redirect:/registration?error";
         }
         emailService.sendRegistrationMessage(user);
         return "auth/login";
