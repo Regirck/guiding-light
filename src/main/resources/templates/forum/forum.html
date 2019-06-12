@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/navbar}" >
+      layout:decorate="~{layout/navbar}">
 <head>
     <meta charset="UTF-8">
 
     <title>Not supported</title>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/forum/forum.css">
+
+    <!-- My JS -->
+    <script src="../../static/js/forum/forum.js" defer></script>
 </head>
 <body>
 
 <section class="container" layout:fragment="~{content}">
 
-    <div>This is the forum</div>
+    <div class="wrapper fadeInDown">
+        <input type="button" class="fadeIn first"
+               value="New Question" onclick="newQuestion()">
+    </div>
 
+    <div class="fadeInDown">
+        <ul class="list-group fadeIn second">
+            <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+                This is a dark list group item</a>
+        </ul>
+    </div>
 
 </section>
 

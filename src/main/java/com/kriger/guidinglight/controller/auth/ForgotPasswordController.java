@@ -34,7 +34,7 @@ public class ForgotPasswordController {
             return "redirect:/login?forgotpassworderror";
         }
         emailService.sendForgotPasswordMessage(user);
-        return "redirect:/login?forgotpassword";
+        return "redirect:/login?email_sent";
     }
 
     @GetMapping("/password_recovery/{email}&{code}")

@@ -36,7 +36,7 @@ public class RegistrationController {
             return "redirect:/registration?error";
         }
         emailService.sendRegistrationMessage(user);
-        return "auth/login";
+        return "redirect:/login?email_sent";
     }
 
     @GetMapping("/activation/{code}")
