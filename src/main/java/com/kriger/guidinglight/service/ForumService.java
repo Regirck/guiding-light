@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -40,5 +41,10 @@ public class ForumService {
             question.setSubmissionTime(LocalDateTime.now());
             questionRepository.save(question);
         }
+    }
+
+    public Question findQuestion(Long id) {
+        Optional<Question> question = questionRepository.findById(id);
+        return question.orElse(null);
     }
 }
