@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/navbar}" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Guiding Light - Forum</title>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/forum/new-question.css">
+
+</head>
+<body>
+
+<section class="container" layout:fragment="~{content}">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="../../static/img/NewQuestion.png" id="icon" alt="User Icon"/>
+            </div>
+
+            <h2>New Question</h2>
+
+            <form name="question" th:action="@{/new_question}" method="post">
+                <input type="text" class="fadeIn second" name="title" placeholder="Title">
+                <input type="text" class="fadeIn second" name="question" placeholder="Question">
+                <input type="submit" class="fadeIn third" value="New Question">
+            </form>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

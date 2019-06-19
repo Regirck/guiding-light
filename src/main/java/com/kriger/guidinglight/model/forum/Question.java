@@ -11,6 +11,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "questions")
 public class Question {
@@ -24,7 +25,7 @@ public class Question {
 
     @Column(nullable = false)
     @Lob
-    private String questions;
+    private String question;
 
     private LocalDateTime submissionTime;
 

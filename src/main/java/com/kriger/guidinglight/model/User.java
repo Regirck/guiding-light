@@ -54,7 +54,6 @@ public class User {
         }
         this.roles.add(new Role(roleName));
     }
-
 }
 
 
