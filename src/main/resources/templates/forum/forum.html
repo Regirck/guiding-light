@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/navbar}" xmlns:sec="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{layout/navbar}" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
 
@@ -32,8 +33,8 @@
     </div>
 
     <div class="fadeInDown">
-        <ul class="list-group fadeIn second">
-            <a href="#" class="list-group-item list-group-item-action list-group-item-dark">
+        <ul th:each="question : ${questions}" class="list-group fadeIn second">
+            <a th:text="${question.title}" href="#" class="list-group-item list-group-item-action list-group-item-dark">
                 This is a dark list group item</a>
         </ul>
     </div>
