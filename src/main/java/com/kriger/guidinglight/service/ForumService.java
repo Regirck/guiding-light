@@ -28,6 +28,9 @@ public class ForumService {
     public List<Question> getAllQuestionSort() {
         List<Question> questions = questionRepository.findAll();
         questions.sort((Comparator.comparing(Question::getSubmissionTime)));
+        for (Question question : questions) {
+            question.getUser().setPassword(null);
+        }
         return questions;
     }
 
