@@ -25,7 +25,7 @@ public class Question {
 
     @Column(nullable = false)
     @Lob
-    private String question;
+    private String content;
 
     private LocalDateTime submissionTime;
 
@@ -39,5 +39,9 @@ public class Question {
     @OneToMany(mappedBy = "question" ,cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     private Set<Comment> comments = new HashSet<>();
+
+    @OneToMany(mappedBy = "question" ,cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    private Set<Comment> answers = new HashSet<>();
 
 }

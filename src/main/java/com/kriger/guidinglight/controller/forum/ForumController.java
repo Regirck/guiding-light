@@ -21,7 +21,6 @@ public class ForumController {
 
     @GetMapping("/forum")
     public String forum() {
-//        forumService.getAllQuestionSort();
         return "forum/forum";
     }
 
@@ -34,9 +33,7 @@ public class ForumController {
 
     @PostMapping("/new_question")
     public String saveNewQuestion(@ModelAttribute("question") @Valid Question question){
-        log.info(question.getTitle());
-        log.info(question.getQuestion());
         forumService.saveQuestion(question);
-        return "forum/forum";
+        return "redirect:/forum";
     }
 }
