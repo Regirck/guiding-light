@@ -1,6 +1,6 @@
 package com.kriger.guidinglight.controller.forum;
 
-import com.kriger.guidinglight.model.forum.Question;
+import com.kriger.guidinglight.model.json.QuestionForTheForum;
 import com.kriger.guidinglight.service.ForumService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +19,11 @@ public class ForumApiController {
     private ForumService forumService;
 
     @GetMapping("/forum/questions")
-    public ResponseEntity<List<Question>> getQuestions() {
-        List<Question> questions = forumService.getAllQuestionSort();
+    public ResponseEntity<List<QuestionForTheForum>> getQuestions() {
+        List<QuestionForTheForum> questions = forumService.getAllQuestionSort();
         if (questions == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
 }
