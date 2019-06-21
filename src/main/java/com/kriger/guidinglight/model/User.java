@@ -1,5 +1,7 @@
 package com.kriger.guidinglight.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kriger.guidinglight.model.forum.Question;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
@@ -42,10 +44,12 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name="role_id")}
     )
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
+    @JsonIgnore
     private Set<Question> questions = new HashSet<>();
 
     public void addRoles(String roleName) {
