@@ -18,7 +18,12 @@ $.getJSON('/forum/questions', function (question) {
         let link = '/forum/question/' + question[i]['id'];
         htmlQuestions.innerHTML +=
             '<a href=' + link + '" class="list-group-item list-group-item-action list-group-item-dark">' +
-                question[i]['title'] +
+                '<div class="question question-title">' +
+                    question[i]['title'] +
+                '</div>' +
+                '<div class="question">' +
+                    question[i]['content'] +
+                '</div>' +
             '</a>';
 
     }

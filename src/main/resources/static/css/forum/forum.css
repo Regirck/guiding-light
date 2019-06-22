@@ -122,3 +122,16 @@ input[type=button]:active {
     -moz-animation-delay: 0.6s;
     animation-delay: 0.6s;
 }
+
+.question {
+    text-align: justify;
+    text-justify: inter-word;
+    font-size: 0.75em;
+    padding: auto;
+}
+
+.question-title {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 1em;
+}
