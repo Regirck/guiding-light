@@ -21,9 +21,10 @@ public class ForumApiController {
     @GetMapping("/forum/questions")
     public ResponseEntity<List<QuestionForTheForum>> getQuestions() {
         List<QuestionForTheForum> questions = forumService.getAllQuestionSort();
-        if (questions == null) {
+        if (questions.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(questions, HttpStatus.OK);
     }
+
 }
