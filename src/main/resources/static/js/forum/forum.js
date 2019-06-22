@@ -15,9 +15,9 @@ $.getJSON('/forum/questions', function (question) {
 
         console.log(question[i]);
 
-        let link = 'https://guiding-light.herokuapp.com/forum/question/' + question[i]['id'];
+        let link = '/forum/question/' + question[i]['id'];
         htmlQuestions.innerHTML +=
-            '<a href=' + link + '" class="list-group-item list-group-item-action list-group-item-dark">' +
+            '<a href=' + link + 'class="list-group-item list-group-item-action list-group-item-dark">' +
                 question[i]['title'] +
             '</a>';
 
