@@ -35,7 +35,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/password_recovery").permitAll()
                 .antMatchers("/forum").permitAll()
                 .antMatchers("/new_question").permitAll()
-                .antMatchers("/question/**").permitAll()
 
                 .antMatchers("/profile").authenticated()
 

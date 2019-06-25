@@ -14,6 +14,7 @@ $.ajax('/forum/questions', {
         },
         204: function () {
             alert('No content');
+            // TODO alert modal
         }
     }
 });
@@ -23,18 +24,42 @@ function fillQuestion() {
         for (let i = 0; i < question.length; i++) {
 
             let htmlQuestions = document.getElementById("questions");
-            let link = '/forum/question/' + question[i]['id'];
+
 
             htmlQuestions.innerHTML +=
-                '<a href=' + link + '" class="list-group-item list-group-item-action list-group-item-dark">' +
-                '<div class="question question-title">' +
-                question[i]['title'] +
-                '</div>' +
-                '<div class="question">' +
-                question[i]['content'] +
-                '</div>' +
-                '</a>';
+                `
+                <li id="` + question[i]['id'] + `" class="list-group-item list-group-item-dark">
+                    <div>
+                        ` + question[i]['title'] + `
+                    </div>
+                    <div>
+                        ` + question[i]['content'] + `
+                    </div>
+                </li>
+                `
 
         }
+        searchQuestion(question);
     });
+}
+
+function searchQuestion(questionJSON) {
+    let questions = document.querySelectorAll('section > div > ul > li');
+
+    for (let i = 0; i < questions.length; i++) {
+
+        questions[i].addEventListener("click", function () {
+
+            for (let j = 0; j < questionJSON.length; j++) {
+                if (questions[i].id == questionJSON[i]['id']) {
+                    openQuestion(questionJSON[i]);
+                    break;
+                }
+            }
+        });
+    }
+}
+
+function openQuestion(question) {
+    console.log(question);
 }
