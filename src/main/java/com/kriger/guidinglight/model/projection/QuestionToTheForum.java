@@ -16,7 +16,7 @@ public class QuestionToTheForum {
     private Long id;
     private String title;
     private String content;
+    private Integer answerSize;
     private LocalDateTime submissionTime;
-    private Long userId;
 
 }

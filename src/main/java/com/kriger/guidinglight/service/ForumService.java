@@ -41,8 +41,8 @@ public class ForumService {
                             .id(questionRepositoryAll.get(q).getId())
                             .title(questionRepositoryAll.get(q).getTitle())
                             .content(questionRepositoryAll.get(q).getContent())
+                            .answerSize(questionRepositoryAll.get(q).getAnswers().size())
                             .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
-                            .userId(questionRepositoryAll.get(q).getUser().getId())
                             .build()));
         }
 
