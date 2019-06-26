@@ -30,6 +30,8 @@ public class ForumController {
                         @RequestParam("page") Optional<Integer> page,
                         @RequestParam("size") Optional<Integer> size) {
 
+        forumService.buildQuestions();
+
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(25);
 
