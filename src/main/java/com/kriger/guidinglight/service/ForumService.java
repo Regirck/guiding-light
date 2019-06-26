@@ -44,10 +44,13 @@ public class ForumService {
                             .answerSize(questionRepositoryAll.get(q).getAnswers().size())
                             .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
                             .build()));
+            log.info("It's ran!");
+            questions.sort(Comparator.comparing(QuestionToTheForum::getSubmissionTime).reversed());
         }
 
-        questions.sort(Comparator.comparing(QuestionToTheForum::getSubmissionTime).reversed());
-
+        for (QuestionToTheForum question : questions) {
+            log.info(question.getTitle());
+        }
     }
 
     public Page<QuestionToTheForum> findPagination(Pageable pageable) {
@@ -80,7 +83,7 @@ public class ForumService {
             question.setSubmissionTime(LocalDateTime.now());
             questionRepository.save(question);
 
-            questions.add(
+            questions.add(0,
                     QuestionToTheForum.builder()
                             .id(question.getId())
                             .title(question.getTitle())
