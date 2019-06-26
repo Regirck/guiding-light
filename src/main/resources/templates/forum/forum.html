@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/navbar}" xmlns:sec="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{layout/navbar}" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
 
@@ -17,6 +18,8 @@
 
 <section class="container" layout:fragment="~{content}">
 
+    <!--New Question button-->
+
     <div sec:authorize="isAuthenticated()">
         <div class="wrapper fadeInDown">
             <input type="button" class="fadeIn first"
@@ -31,13 +34,22 @@
         </div>
     </div>
 
-    <div class="fadeInDown">
-        <ul id="questions" class="list-group fadeIn second">
+    <!--Questions-->
 
-        </ul>
-    </div>
+    <table border="1">
+        <tr th:each="question, iStat : ${questionPage.content}"
+            th:style="${iStat.odd}? 'font-weight: bold;'"
+            th:alt-title="${iStat.even}? 'even' : 'odd'">
+            <td th:text="${question.id}" />
+            <td th:text="${question.title}" />
+        </tr>
+    </table>
 
-
+    <div th:if="${questionPage.totalPages > 0}" class="pagination"
+         th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/forum(size=${questionPage.size}, page=${pageNumber})}"
+           th:text=${pageNumber}
+           th:class="${pageNumber==questionPage.number + 1} ? active"></a>
     </div>
 
 </section>

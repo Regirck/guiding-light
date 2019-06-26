@@ -1,4 +1,4 @@
-package com.kriger.guidinglight.model.json;
+package com.kriger.guidinglight.model.projection;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class QuestionForTheForum {
+public class QuestionToTheForum {
 
     private Long id;
     private String title;
