@@ -10,6 +10,7 @@
 
     <!-- My CSS -->
     <link rel="stylesheet" type="text/css" href="../static/css/forum/forum.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/forum/pagination.css">
 
     <!-- My JS -->
     <script type="text/javascript" src="../../static/js/forum/forum.js" defer></script>
@@ -36,22 +37,6 @@
 
     <!--Questions-->
 
-    <!--    <table border="1">-->
-    <!--        <tr th:each="question, iStat : ${questionPage.content}"-->
-    <!--            th:style="${iStat.odd}? 'font-weight: bold;'"-->
-    <!--            th:alt-title="${iStat.even}? 'even' : 'odd'">-->
-    <!--            <td th:text="${question.id}" />-->
-    <!--            <td th:text="${question.title}" />-->
-    <!--        </tr>-->
-    <!--    </table>-->
-
-    <!--    <div th:if="${questionPage.totalPages > 0}" class="pagination"-->
-    <!--         th:each="pageNumber : ${pageNumbers}">-->
-    <!--        <a th:href="@{/forum(size=${questionPage.size}, page=${pageNumber})}"-->
-    <!--           th:text=${pageNumber}-->
-    <!--           th:class="${pageNumber==questionPage.number + 1} ? active"></a>-->
-    <!--    </div>-->
-
     <div class="list-group fadeInDown">
 
         <div th:each="question, iStat : ${questionPage.content}">
@@ -72,6 +57,32 @@
             </a>
 
         </div>
+
+        <!--Pagination-->
+
+        <div th:if="${questionPage.totalPages > 0}" class="container mt-2 mb-6 fadeIn third">
+
+            <ul class="pagination pagination-sm justify-content-center">
+
+                <li class="page-item"><a class="page-link"
+                     th:href="@{/forum(size=${questionPage.size}, page=${1})}">&laquo;</a></li>
+
+                <li class="page-item"><a class="page-link" href="#">&#8249;</a></li>
+
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link"
+                    th:href="${pageNumbers}">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">4</a></li>
+
+                <li class="page-item"><a class="page-link" href="#">&#8250;</a></li>
+
+                <li class="page-item"><a class="page-link"
+                 th:href="@{/forum(size=${questionPage.size}, page=${questionPage.totalPages})}">&raquo;</a></li>
+
+            </ul>
+
+        </div>
+
 
     </div>
 

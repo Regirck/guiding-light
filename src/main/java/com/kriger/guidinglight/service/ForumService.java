@@ -31,26 +31,28 @@ public class ForumService {
 
     private List<QuestionToTheForum> questions = new ArrayList<>();
 
-    public void buildQuestions() {
+    private void buildQuestions() {
         List<Question> questionRepositoryAll = questionRepository.findAll();
 
-        if (questions.isEmpty()) {
-            IntStream.range(0, questionRepositoryAll.size()).forEach(q ->
-                    questions.add(
-                    QuestionToTheForum.builder()
-                            .id(questionRepositoryAll.get(q).getId())
-                            .title(questionRepositoryAll.get(q).getTitle())
-                            .content(questionRepositoryAll.get(q).getContent())
-                            .answerSize(questionRepositoryAll.get(q).getAnswers().size())
-                            .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
-                            .build()));
-        }
+        questions.clear();
+
+        IntStream.range(0, questionRepositoryAll.size()).forEach(q ->
+            questions.add(
+                QuestionToTheForum.builder()
+                    .id(questionRepositoryAll.get(q).getId())
+                    .title(questionRepositoryAll.get(q).getTitle())
+                    .content(questionRepositoryAll.get(q).getContent())
+                    .answerSize(questionRepositoryAll.get(q).getAnswers().size())
+                    .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
+                .build()));
 
         questions.sort(Comparator.comparing(QuestionToTheForum::getSubmissionTime).reversed());
 
     }
 
     public Page<QuestionToTheForum> findPagination(Pageable pageable) {
+
+        buildQuestions();
 
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();

@@ -122,6 +122,11 @@ input[type=button]:active {
     -moz-animation-delay: 0.6s;
     animation-delay: 0.6s;
 }
+.fadeIn.third {
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    animation-delay: 1s;
+}
 
 .question {
     text-align: justify;
@@ -134,4 +139,8 @@ input[type=button]:active {
     text-align: center;
     text-transform: uppercase;
     padding-bottom: 1em;
+}
+
+.list-group{
+    margin-bottom: 50px;
 }
