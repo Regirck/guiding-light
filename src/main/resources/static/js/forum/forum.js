@@ -1,5 +1,5 @@
 function newQuestion() {
-    location.href = "/new_question";
+    location.href = "forum/new_question";
 }
 
 

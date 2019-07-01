@@ -53,14 +53,14 @@ public class ForumController {
         return "forum/forum";
     }
 
-    @GetMapping("/new_question")
+    @GetMapping("forum/new_question")
     public String createNewQuestion(Model model){
         Question question = new Question();
         model.addAttribute("question", question);
         return "forum/new-question";
     }
 
-    @PostMapping("/new_question")
+    @PostMapping("forum/new_question")
     public String saveNewQuestion(@ModelAttribute("question") @Valid Question question){
         forumService.saveQuestion(question);
         return "redirect:/forum";
