@@ -42,7 +42,7 @@
 
         <div th:each="question : ${questionPage.content}">
 
-            <a th:href="@{'/forum/question/' + ${question.id}}"
+            <a th:href="@{'/question/' + ${question.id}}"
                class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start fadeIn second">
 
                 <div class="d-flex w-100 justify-content-between">

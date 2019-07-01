@@ -42,8 +42,6 @@ public class ForumController {
 
         model.addAttribute("questionPage", questionPage);
 
-        int totalPages = questionPage.getTotalPages();
-
         return "forum/forum";
     }
 
@@ -60,9 +58,8 @@ public class ForumController {
         return "redirect:/forum";
     }
 
-    @GetMapping("forum/question/{id}")
+    @GetMapping("question/{id}")
     public String getQuestion(@PathVariable("id") Long id) {
-        log.info(String.valueOf(id));
         Question question = forumService.findQuestion(id);
         if (question == null) {
             return "index";
