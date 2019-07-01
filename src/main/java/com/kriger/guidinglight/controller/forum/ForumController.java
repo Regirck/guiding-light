@@ -35,6 +35,8 @@ public class ForumController {
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(25);
 
+        model.addAttribute("currentPage", currentPage);
+
         Page<QuestionToTheForum> questionPage =
                 forumService.findPagination(PageRequest.of(currentPage -1, pageSize));
 
@@ -46,11 +48,7 @@ public class ForumController {
             List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
                     .boxed()
                     .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-            log.info(String.valueOf(pageNumbers));
         }
-
-        log.info(String.valueOf(questionPage.getTotalPages()));
 
         return "forum/forum";
     }

@@ -41,7 +41,8 @@
 
         <div th:each="question, iStat : ${questionPage.content}">
 
-            <a th:href="@{'/forum/question/' + ${question.id}}" class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start fadeIn second">
+            <a th:href="@{'/forum/question/' + ${question.id}}"
+               class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start fadeIn second">
 
                 <div class="d-flex w-100 justify-content-between">
                     <h5 th:text="${question.title}" class="mb-1">
@@ -64,20 +65,67 @@
 
             <ul class="pagination pagination-sm justify-content-center">
 
-                <li class="page-item"><a class="page-link"
-                     th:href="@{/forum(size=${questionPage.size}, page=${1})}">&laquo;</a></li>
+                <!-- Jump first page -->
+                <div th:if="${currentPage > 1}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${1})}">&laquo;</a></li>
+                </div>
 
-                <li class="page-item"><a class="page-link" href="#">&#8249;</a></li>
+                <!-- Jump previous page -->
+                <div th:if="${currentPage > 3}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${currentPage - 3})}"
+                                             th:text="${currentPage - 3}">previous</a>
+                    </li>
+                </div>
 
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link"
-                    th:href="${pageNumbers}">3</a></li>
-                <li class="page-item"><a class="page-link" href="#">4</a></li>
+                <div th:if="${currentPage > 2}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${currentPage - 2})}"
+                                             th:text="${currentPage - 2}">previous</a>
+                    </li>
+                </div>
 
-                <li class="page-item"><a class="page-link" href="#">&#8250;</a></li>
+                <div th:if="${currentPage > 1}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${currentPage - 1})}"
+                                             th:text="${currentPage - 1}">previous</a>
+                    </li>
+                </div>
 
-                <li class="page-item"><a class="page-link"
-                 th:href="@{/forum(size=${questionPage.size}, page=${questionPage.totalPages})}">&raquo;</a></li>
+                <!-- Jump page number -->
+                <li class="page-item active"><a class="page-link"
+                                                th:href="@{/forum(size=${questionPage.size}, page=${currentPage})}"
+                                                th:text="${currentPage}">100</a></li>
+
+                <!-- Jump next page -->
+                <div th:if="${currentPage < questionPage.totalPages}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${currentPage + 1})}"
+                                             th:text="${currentPage + 1}">next</a>
+                    </li>
+                </div>
+
+                <div th:if="${(currentPage + 1) < questionPage.totalPages}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${currentPage + 2})}"
+                                             th:text="${currentPage + 2}">next</a>
+                    </li>
+                </div>
+
+                <div th:if="${(currentPage + 2) < questionPage.totalPages}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${currentPage + 3})}"
+                                             th:text="${currentPage + 3}">next</a>
+                    </li>
+                </div>
+
+                <!-- Jump last page -->
+                <div th:if="${currentPage < questionPage.totalPages}">
+                    <li class="page-item"><a class="page-link"
+                                             th:href="@{/forum(size=${questionPage.size}, page=${questionPage.totalPages})}">&raquo;</a>
+                    </li>
+                </div>
 
             </ul>
 

@@ -44,12 +44,7 @@ public class ForumService {
                             .answerSize(questionRepositoryAll.get(q).getAnswers().size())
                             .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
                             .build()));
-            log.info("It's ran!");
             questions.sort(Comparator.comparing(QuestionToTheForum::getSubmissionTime).reversed());
-        }
-
-        for (QuestionToTheForum question : questions) {
-            log.info(question.getTitle());
         }
     }
 
