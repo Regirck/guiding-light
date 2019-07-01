@@ -44,12 +44,6 @@ public class ForumController {
 
         int totalPages = questionPage.getTotalPages();
 
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-        }
-
         return "forum/forum";
     }
 
@@ -66,8 +60,9 @@ public class ForumController {
         return "redirect:/forum";
     }
 
-    @GetMapping("/question/{id}")
+    @GetMapping("forum/question/{id}")
     public String getQuestion(@PathVariable("id") Long id) {
+        log.info(String.valueOf(id));
         Question question = forumService.findQuestion(id);
         if (question == null) {
             return "index";

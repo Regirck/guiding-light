@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/navbar}" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layout/navbar}"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +40,7 @@
 
     <div class="list-group fadeInDown">
 
-        <div th:each="question, iStat : ${questionPage.content}">
+        <div th:each="question : ${questionPage.content}">
 
             <a th:href="@{'/forum/question/' + ${question.id}}"
                class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start fadeIn second">
