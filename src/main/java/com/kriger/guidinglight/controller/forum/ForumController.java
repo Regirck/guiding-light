@@ -1,6 +1,7 @@
 package com.kriger.guidinglight.controller.forum;
 
 import com.kriger.guidinglight.model.forum.Question;
+import com.kriger.guidinglight.model.projection.QuestionDetail;
 import com.kriger.guidinglight.model.projection.QuestionToTheForum;
 import com.kriger.guidinglight.service.ForumService;
 import lombok.extern.slf4j.Slf4j;
@@ -12,11 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Slf4j
 @Controller
@@ -60,8 +57,7 @@ public class ForumController {
 
     @GetMapping("/question/{id}")
     public String getQuestion(@PathVariable("id") Long id, Model model) {
-        Question question = forumService.findQuestion(id);
-        // TODO create projection
+        QuestionDetail question = forumService.buildQuestionDetail(id);
         model.addAttribute("question", question);
         return "forum/question";
     }

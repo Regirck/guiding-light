@@ -1,10 +1,17 @@
 package com.kriger.guidinglight.service;
 
 import com.kriger.guidinglight.model.User;
+import com.kriger.guidinglight.model.forum.Answer;
+import com.kriger.guidinglight.model.forum.Comment;
 import com.kriger.guidinglight.model.forum.Question;
+import com.kriger.guidinglight.model.forum.Tag;
+import com.kriger.guidinglight.model.projection.QuestionDetail;
 import com.kriger.guidinglight.model.projection.QuestionToTheForum;
 import com.kriger.guidinglight.repository.UserRepository;
+import com.kriger.guidinglight.repository.forum.AnswerRepository;
+import com.kriger.guidinglight.repository.forum.CommentRepository;
 import com.kriger.guidinglight.repository.forum.QuestionRepository;
+import com.kriger.guidinglight.repository.forum.TagRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,6 +34,15 @@ public class ForumService {
     private QuestionRepository questionRepository;
 
     @Autowired
+    private AnswerRepository answerRepository;
+
+    @Autowired
+    private TagRepository tagRepository;
+
+    @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     private List<QuestionToTheForum> questions = new ArrayList<>();
@@ -37,13 +53,13 @@ public class ForumService {
         if (questions.isEmpty()) {
             IntStream.range(0, questionRepositoryAll.size()).forEach(q ->
                     questions.add(
-                    QuestionToTheForum.builder()
-                            .id(questionRepositoryAll.get(q).getId())
-                            .title(questionRepositoryAll.get(q).getTitle())
-                            .content(questionRepositoryAll.get(q).getContent())
-                            .answerSize(questionRepositoryAll.get(q).getAnswers().size())
-                            .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
-                            .build()));
+                            QuestionToTheForum.builder()
+                                    .id(questionRepositoryAll.get(q).getId())
+                                    .title(questionRepositoryAll.get(q).getTitle())
+                                    .content(questionRepositoryAll.get(q).getContent())
+                                    .answerSize(questionRepositoryAll.get(q).getAnswers().size())
+                                    .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
+                                    .build()));
             questions.sort(Comparator.comparing(QuestionToTheForum::getSubmissionTime).reversed());
         }
     }
@@ -89,8 +105,30 @@ public class ForumService {
         }
     }
 
-    public Question findQuestion(Long id) {
-        Optional<Question> question = questionRepository.findById(id);
-        return question.orElse(null);
+    public QuestionDetail buildQuestionDetail(Long id) {
+        Optional<Question> questionOptional = questionRepository.findById(id);
+
+        if (questionOptional.isPresent()) {
+            return null;
+        } else {
+            Question question = questionOptional.get();
+
+            List<Answer> answers = answerRepository.findAllAnswersByQuestion(question);
+            List<Tag> tags = tagRepository.findAllTagsByQuestion(question);
+            List<Comment> comments = commentRepository.findAllCommentsByQuestion(question);
+
+            QuestionDetail questionDetail = QuestionDetail.builder()
+                    .id(question.getId())
+                    .title(question.getTitle())
+                    .content(question.getContent())
+                    .submissionTime(question.getSubmissionTime())
+                    .tags(tags)
+                    .comments(comments)
+                    .answers(answers)
+                    .build();
+
+            return questionDetail;
+        }
     }
+
 }

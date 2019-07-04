@@ -21,7 +21,7 @@ public class Answer {
     private Long id;
 
     @Column(nullable = false)
-    private String comment;
+    private String answer;
 
     private LocalDateTime submissionTime;
 
