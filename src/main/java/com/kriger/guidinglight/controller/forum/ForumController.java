@@ -45,25 +45,24 @@ public class ForumController {
         return "forum/forum";
     }
 
-    @GetMapping("forum/new_question")
+    @GetMapping("/forum/new_question")
     public String createNewQuestion(Model model){
         Question question = new Question();
         model.addAttribute("question", question);
         return "forum/new-question";
     }
 
-    @PostMapping("forum/new_question")
+    @PostMapping("/forum/new_question")
     public String saveNewQuestion(@ModelAttribute("question") @Valid Question question){
         forumService.saveQuestion(question);
         return "redirect:/forum";
     }
 
-    @GetMapping("question/{id}")
-    public String getQuestion(@PathVariable("id") Long id) {
+    @GetMapping("/question/{id}")
+    public String getQuestion(@PathVariable("id") Long id, Model model) {
         Question question = forumService.findQuestion(id);
-        if (question == null) {
-            return "index";
-        }
+        // TODO create projection
+        model.addAttribute("question", question);
         return "forum/question";
     }
 }

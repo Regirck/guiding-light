@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/navbar}" xmlns:th="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{layout/navbar}"
+      xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Guiding Light - Question</title>
+
+    <!-- My CSS -->
+    <link rel="stylesheet" type="text/css" href="../../static/css/forum/question.css">
 
 </head>
 <body>
 
 <section class="container" layout:fragment="~{content}">
 
-    <h2>Question</h2>
+    <div th:if="${question != null}">
+        <div class="wrapper fadeInDown">
+            <h2>Question</h2>
+        </div>
+    </div>
+
+    <div th:if="${question == null}">
+        <div class="wrapper fadeInDown">
+            <h3>Question is not exists!</h3>
+        </div>
+    </div>
 
 </section>
 

@@ -10,7 +10,7 @@ public class PageController {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "redirect:/forum";
     }
 
     @GetMapping("/tutorials")
