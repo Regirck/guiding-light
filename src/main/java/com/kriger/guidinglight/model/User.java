@@ -35,6 +35,7 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JoinColumn(name="id")
+    @EqualsAndHashCode.Exclude
     private UserPersonalData userPersonalData;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -44,12 +45,10 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name="role_id")}
     )
     @EqualsAndHashCode.Exclude
-    @JsonIgnore
     private Set<Role> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
-    @JsonIgnore
     private Set<Question> questions = new HashSet<>();
 
     public void addRoles(String roleName) {
