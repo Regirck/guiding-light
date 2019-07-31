@@ -1,7 +1,6 @@
 package com.kriger.guidinglight.controller.forum;
 
 import com.kriger.guidinglight.model.forum.Question;
-import com.kriger.guidinglight.model.projection.QuestionDetail;
 import com.kriger.guidinglight.model.projection.QuestionToTheForum;
 import com.kriger.guidinglight.service.ForumService;
 import lombok.extern.slf4j.Slf4j;
@@ -57,7 +56,7 @@ public class ForumController {
 
     @GetMapping("/question/{id}")
     public String getQuestion(@PathVariable("id") Long id, Model model) {
-        QuestionDetail question = forumService.buildQuestionDetail(id);
+        Question question = forumService.buildQuestionDetail(id);
         model.addAttribute("question", question);
         return "forum/question";
     }
