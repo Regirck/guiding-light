@@ -54,7 +54,7 @@ public class ForgotPasswordController {
 
     @PostMapping("/password_recovery")
     public String changePasswordFromTheRecovery(@ModelAttribute("user") User user){
-           User savedUser = userService.findByUserForTheId(user.getId());
+       User savedUser = userService.findByUserForTheId(user.getId());
         if (savedUser == null) {
             return "redirect:/login?passwordrecoveryerror";
         }

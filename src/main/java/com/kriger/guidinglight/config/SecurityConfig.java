@@ -37,11 +37,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/forum/new_question").authenticated()
                 .antMatchers("/profile").authenticated()
+                .antMatchers("/new_answer/**").authenticated()
 
                 .antMatchers(HttpMethod.POST).hasRole("USER")
 
                 .antMatchers(HttpMethod.DELETE).hasRole("ADMIN")
-
 
                 .anyRequest().authenticated()
             .and()

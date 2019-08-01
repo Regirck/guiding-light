@@ -3,10 +3,7 @@ package com.kriger.guidinglight.service;
 import com.kriger.guidinglight.model.User;
 import com.kriger.guidinglight.model.forum.Question;
 import com.kriger.guidinglight.repository.UserRepository;
-import com.kriger.guidinglight.repository.forum.AnswerRepository;
-import com.kriger.guidinglight.repository.forum.CommentRepository;
 import com.kriger.guidinglight.repository.forum.QuestionRepository;
-import com.kriger.guidinglight.repository.forum.TagRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,15 +23,6 @@ public class ForumService {
 
     @Autowired
     private QuestionRepository questionRepository;
-
-    @Autowired
-    private AnswerRepository answerRepository;
-
-    @Autowired
-    private TagRepository tagRepository;
-
-    @Autowired
-    private CommentRepository commentRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -82,11 +70,6 @@ public class ForumService {
 
             questions.add(0, question);
         }
-    }
-
-    public Question buildQuestionDetail(long id) {
-        Question question = questionRepository.findById(id);
-        return question;
     }
 
 }

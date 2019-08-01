@@ -53,10 +53,4 @@ public class ForumController {
         return "redirect:/forum";
     }
 
-    @GetMapping("/question/{id}")
-    public String getQuestion(@PathVariable("id") Long id, Model model) {
-        Question question = forumService.buildQuestionDetail(id);
-        model.addAttribute("question", question);
-        return "forum/question";
-    }
 }
