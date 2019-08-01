@@ -1,7 +1,6 @@
 package com.kriger.guidinglight.controller.forum;
 
 import com.kriger.guidinglight.model.forum.Question;
-import com.kriger.guidinglight.model.projection.QuestionToTheForum;
 import com.kriger.guidinglight.service.ForumService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class ForumController {
 
         model.addAttribute("currentPage", currentPage);
 
-        Page<QuestionToTheForum> questionPage =
+        Page<Question> questionPage =
                 forumService.findPagination(PageRequest.of(currentPage -1, pageSize));
 
         model.addAttribute("questionPage", questionPage);

@@ -1,11 +1,7 @@
 package com.kriger.guidinglight.service;
 
 import com.kriger.guidinglight.model.User;
-import com.kriger.guidinglight.model.forum.Answer;
-import com.kriger.guidinglight.model.forum.Comment;
 import com.kriger.guidinglight.model.forum.Question;
-import com.kriger.guidinglight.model.forum.Tag;
-import com.kriger.guidinglight.model.projection.QuestionToTheForum;
 import com.kriger.guidinglight.repository.UserRepository;
 import com.kriger.guidinglight.repository.forum.AnswerRepository;
 import com.kriger.guidinglight.repository.forum.CommentRepository;
@@ -23,7 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.IntStream;
 
 @Slf4j
 @Service
@@ -44,31 +39,23 @@ public class ForumService {
     @Autowired
     private UserRepository userRepository;
 
-    private List<QuestionToTheForum> questions = new ArrayList<>();
+    private List<Question> questions = new ArrayList<>();
 
     public void buildQuestions() {
         List<Question> questionRepositoryAll = questionRepository.findAll();
 
         if (questions.isEmpty()) {
-            IntStream.range(0, questionRepositoryAll.size()).forEach(q ->
-                    questions.add(
-                            QuestionToTheForum.builder()
-                                    .id(questionRepositoryAll.get(q).getId())
-                                    .title(questionRepositoryAll.get(q).getTitle())
-                                    .content(questionRepositoryAll.get(q).getContent())
-                                    .answerSize(questionRepositoryAll.get(q).getAnswers().size())
-                                    .submissionTime(questionRepositoryAll.get(q).getSubmissionTime())
-                                    .build()));
-            questions.sort(Comparator.comparing(QuestionToTheForum::getSubmissionTime).reversed());
+            questions.addAll(questionRepositoryAll);
+            questions.sort(Comparator.comparing(Question::getSubmissionTime).reversed());
         }
     }
 
-    public Page<QuestionToTheForum> findPagination(Pageable pageable) {
+    public Page<Question> findPagination(Pageable pageable) {
 
         int pageSize = pageable.getPageSize();
         int currentPage = pageable.getPageNumber();
         int startItem = currentPage * pageSize;
-        List<QuestionToTheForum> list;
+        List<Question> list;
 
         if (questions.size() < startItem) {
             list = Collections.emptyList();
@@ -77,7 +64,7 @@ public class ForumService {
             list = questions.subList(startItem, toIndex);
         }
 
-        Page<QuestionToTheForum> questionPage = new PageImpl<>(
+        Page<Question> questionPage = new PageImpl<>(
                 list, PageRequest.of(currentPage, pageSize), questions.size());
 
         return questionPage;
@@ -93,14 +80,7 @@ public class ForumService {
             question.setSubmissionTime(LocalDateTime.now());
             questionRepository.save(question);
 
-            questions.add(0,
-                    QuestionToTheForum.builder()
-                            .id(question.getId())
-                            .title(question.getTitle())
-                            .content(question.getContent())
-                            .answerSize(question.getAnswers().size())
-                            .submissionTime(question.getSubmissionTime())
-                            .build());
+            questions.add(0, question);
         }
     }
 
