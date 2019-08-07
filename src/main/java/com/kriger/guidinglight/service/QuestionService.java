@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
 
 @Service
 public class QuestionService {
@@ -21,6 +23,14 @@ public class QuestionService {
     public Question getQuestion(long id) {
         Question question = questionRepository.findById(id);
         return question;
+    }
+
+    public List<Answer> getAnswers() {
+        List<Answer> answers = answerRepository.findAll();
+        if (!answers.isEmpty()) {
+            answers.sort(Comparator.comparing(Answer::getSubmissionTime).reversed());
+        }
+        return answers;
     }
 
     public void saveAnswerForTheQuestion(long questionId, String answer) {

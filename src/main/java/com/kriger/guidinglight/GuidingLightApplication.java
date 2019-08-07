@@ -10,4 +10,6 @@ public class GuidingLightApplication {
         SpringApplication.run(GuidingLightApplication.class, args);
     }
 
+
+
 }

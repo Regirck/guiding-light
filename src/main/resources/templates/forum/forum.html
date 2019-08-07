@@ -10,11 +10,10 @@
     <title>Guiding Light - Forum</title>
 
     <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="../static/css/forum/forum.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/forum/pagination.css">
+    <link rel="stylesheet" type="text/css" href="/css/forum/forum.css">
 
     <!-- My JS -->
-    <script type="text/javascript" src="../../static/js/forum/forum.js" defer></script>
+    <script type="text/javascript" src="/js/forum/forum.js" defer></script>
 </head>
 <body>
 
@@ -42,7 +41,7 @@
 
         <div th:each="question : ${questionPage.content}">
 
-            <a th:href="@{'/question/' + ${question.id}}"
+            <a th:href="@{'/forum/question/' + ${question.id}}"
                class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start fadeIn second">
 
                 <div class="d-flex w-100 justify-content-between">

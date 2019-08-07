@@ -8,10 +8,10 @@
     <title>Guiding Light - Question</title>
 
     <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="../../static/css/forum/question.css">
+    <link rel="stylesheet" type="text/css" href="/css/forum/question.css">
 
     <!-- My JS -->
-    <script type="text/javascript" src="../../static/js/forum/question.js" defer></script>
+    <script type="text/javascript" src="/js/forum/question.js" defer></script>
 
 </head>
 <body>
@@ -33,25 +33,43 @@
                     Content
                 </p>
             </div>
+        </div>
 
-            <!--New Answer Button-->
-            <div>
-                <div sec:authorize="isAuthenticated()">
-                    <div class="wrapper fadeInDown">
-                        <input type="button" class="fadeIn second"
-                               value="New Answer" onclick="newAnswer()">
-                    </div>
-                </div>
-
-                <div sec:authorize="isAnonymous()">
-                    <div class="wrapper fadeInDown">
-                        <input type="button" class="fadeIn second"
-                               value="New Answer" onclick="login()">
-                    </div>
+        <!--New Answer Button-->
+        <div>
+            <div sec:authorize="isAuthenticated()">
+                <div class="wrapper fadeInDown">
+                    <input type="button" class="fadeIn second"
+                           value="New Answer" onclick="newAnswer()">
                 </div>
             </div>
 
+            <div sec:authorize="isAnonymous()">
+                <div class="wrapper fadeInDown">
+                    <input type="button" class="fadeIn second"
+                           value="New Answer" onclick="login()">
+                </div>
+            </div>
         </div>
+
+        <!--Answers-->
+        <div class="list-group fadeInDown">
+            <div th:each="answer : ${answers}">
+                <div class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start fadeIn third">
+
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"></h5>
+                        <h6 class="small" th:text="${{answer.submissionTime}}"></h6>
+                    </div>
+
+                    <p th:text="${answer.answer}" class="mb-1">
+                        Content
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
     <div th:if="${question == null}">

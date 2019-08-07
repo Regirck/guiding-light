@@ -35,9 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/password_recovery").permitAll()
                 .antMatchers("/forum").permitAll()
 
-                .antMatchers("/forum/new_question").authenticated()
                 .antMatchers("/profile").authenticated()
-                .antMatchers("/new_answer/**").authenticated()
+                .antMatchers("/forum/new_question").authenticated()
+                .antMatchers("/forum/question/new_answer/**").authenticated()
 
                 .antMatchers(HttpMethod.POST).hasRole("USER")
 

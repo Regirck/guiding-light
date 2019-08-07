@@ -11,7 +11,7 @@ public class StaticFilesConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry
-            .addResourceHandler("/static/**")
+            .addResourceHandler("/**")
             .addResourceLocations("classpath:/static/");
     }
 

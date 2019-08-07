@@ -2,9 +2,13 @@ function newAnswer() {
 
     let pathName = window.location.pathname;
 
-    let questionId = pathName.substr(10, pathName.length);
+    console.log(pathName);
 
-    location.href = "/new_answer/" + questionId;
+    let questionId = pathName.substr(16, pathName.length);
+
+    console.log(questionId);
+
+    location.href = "/forum/question/new_answer/" + questionId;
 
 }
 

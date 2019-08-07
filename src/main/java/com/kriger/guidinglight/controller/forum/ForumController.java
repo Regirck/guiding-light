@@ -14,13 +14,14 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Slf4j
+@RequestMapping("/forum")
 @Controller
 public class ForumController {
 
     @Autowired
     private ForumService forumService;
 
-    @GetMapping("/forum")
+    @GetMapping("")
     public String forum(Model model,
                         @RequestParam("page") Optional<Integer> page,
                         @RequestParam("size") Optional<Integer> size) {
@@ -40,14 +41,14 @@ public class ForumController {
         return "forum/forum";
     }
 
-    @GetMapping("/forum/new_question")
+    @GetMapping("/new_question")
     public String createNewQuestion(Model model){
         Question question = new Question();
         model.addAttribute("question", question);
         return "forum/new-question";
     }
 
-    @PostMapping("/forum/new_question")
+    @PostMapping("/new_question")
     public String saveNewQuestion(@ModelAttribute("question") @Valid Question question){
         forumService.saveQuestion(question);
         return "redirect:/forum";

@@ -7,7 +7,7 @@
     <title>Guiding Light - New answer</title>
 
     <!-- My CSS -->
-    <link rel="stylesheet" type="text/css" href="../static/css/forum/new-content.css">
+    <link rel="stylesheet" type="text/css" href="/css/forum/new-content.css">
 
 </head>
 <body>
@@ -18,12 +18,12 @@
 
             <!-- Icon -->
             <div class="fadeIn first">
-                <img src="../../static/img/Answer.png" id="icon" alt="User Icon"/>
+                <img src="/img/Answer.png" id="icon" alt="User Icon"/>
             </div>
 
             <h2>New Answer</h2>
 
-            <form name="answer" th:action="@{/new_answer/} + ${questionId}" th:object="${answer}"
+            <form name="answer" th:action="@{/forum/question/new_answer/} + ${questionId}" th:object="${answer}"
                   method="post">
 
                 <input type="text" class="fadeIn second" name="answer"
