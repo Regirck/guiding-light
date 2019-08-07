@@ -1,5 +1,6 @@
 package com.kriger.guidinglight.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class UserPersonalData {
     private String city;
 
     @OneToOne
+    @JsonIgnore
     private User user;
 
 }

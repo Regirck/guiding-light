@@ -1,11 +1,7 @@
 package com.kriger.guidinglight.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.kriger.guidinglight.model.forum.Question;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -50,6 +46,12 @@ public class User {
     @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
     @EqualsAndHashCode.Exclude
     private Set<Question> questions = new HashSet<>();
+
+    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL)
+    @EqualsAndHashCode.Exclude
+    private Set<Question> answers = new HashSet<>();
+
+
 
     public void addRoles(String roleName) {
         if (this.roles == null || this.roles.isEmpty()) {

@@ -41,6 +41,14 @@
 
         <div th:each="question : ${questionPage.content}">
 
+            <div id="user-id" th:text="${question.user.id}" style="display: none;">
+                User ID
+            </div>
+
+            <button id="modal-button" th:text="${question.user.email}" type="button" class="btn btn-secondary fadeIn second">
+                Open modal
+            </button>
+
             <a th:href="@{'/forum/question/' + ${question.id}}"
                class="list-group-item list-group-item-action list-group-item-dark flex-column align-items-start fadeIn second">
 
@@ -48,13 +56,21 @@
                     <h5 th:text="${question.title}" class="mb-1">
                         Title
                     </h5>
-                    <h6 class="small" th:text="${{question.submissionTime}}">
-                    </h6>
+
                 </div>
 
-                <p th:text="${question.content}" class="mb-1">
-                    Content
-                </p>
+                <div class="d-flex w-100 justify-content-between">
+
+                    <h5 th:text="${question.content}" class="mb-1">
+                        Content
+                    </h5>
+
+                    <h6 class="small" th:text="${{question.submissionTime}}">
+                        Time
+                    </h6>
+
+                </div>
+
             </a>
 
         </div>
@@ -132,6 +148,31 @@
         </div>
 
 
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="user-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
     </div>
 
 </section>

@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
-@Controller
 @Slf4j
+@Controller
 public class ProfileController {
 
     @Autowired

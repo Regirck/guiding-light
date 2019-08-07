@@ -10,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class ProfileService {
@@ -46,5 +48,12 @@ public class ProfileService {
     public void saveUserPersonalData(UserPersonalData profile) {
         userPersonalDataRepository.save(profile);
     }
+
+    public UserPersonalData getUserPersonalData(long userId) {
+        User user = userRepository.findById(userId);
+        UserPersonalData personalDataByUser = userPersonalDataRepository.findPersonalDataByUser(user);
+        return personalDataByUser;
+    }
+
 
 }
