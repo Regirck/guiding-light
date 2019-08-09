@@ -19,6 +19,15 @@
 <section class="container" layout:fragment="~{content}">
 
     <div th:if="${question != null}">
+
+        <div id="user-id" th:text="${question.user.id}" style="display: none;">
+            User ID
+        </div>
+
+        <button id="modal-button" th:text="${question.user.email}" type="button" class="btn btn-secondary fadeIn second">
+            Open modal
+        </button>
+
         <div class="wrapper fadeInDown">
 
             <!--Question-->
@@ -75,6 +84,31 @@
     <div th:if="${question == null}">
         <div class="wrapper fadeInDown">
             <h3>Question is not exists!</h3>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="user-modal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Modal Heading</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
         </div>
     </div>
 
