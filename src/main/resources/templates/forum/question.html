@@ -24,6 +24,10 @@
             User ID
         </div>
 
+        <div id="user-email" th:text="${question.user.email}" style="display: none;">
+            User Email
+        </div>
+
         <button id="modal-button" th:text="${question.user.email}" type="button" class="btn btn-secondary fadeIn second">
             Open modal
         </button>

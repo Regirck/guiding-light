@@ -9,6 +9,7 @@ function createModalWithUserPersonalData() {
 
     function callUser() {
         let userId = document.querySelector("#user-id").innerHTML;
+
         console.log(userId);
         $.getJSON('/profile/get/' + userId, function(response) {
             console.log(response);
@@ -23,17 +24,12 @@ function createModalWithUserPersonalData() {
 createModalWithUserPersonalData();
 
 function newAnswer() {
-
     let pathName = window.location.pathname;
-
     let questionId = pathName.substr(16, pathName.length);
-
     location.href = "/forum/question/new_answer/" + questionId;
 }
 
 
 function login() {
-
     location.href = "/login";
-
 }
